@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 15:37:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/14 22:24:54 by ybel-hac         ###   ########.fr       */
+/*   Created: 2023/03/14 17:04:00 by ybel-hac          #+#    #+#             */
+/*   Updated: 2023/03/14 19:45:52 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
 
-void	ft_error(char *s)
+void	ft_swap(char *c1, char *c2)
 {
-	int	i;
+	char	temp;
 
-	i = -1;
-	ft_putstr_fd("\033[0;31m", 2);
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(s, 2);
-	ft_putstr_fd("\033[0;37m", 2);
-	exit(EXIT_FAILURE);
+	temp = *c1;
+	*c1 = *c2;
+	*c2 = temp;
 }

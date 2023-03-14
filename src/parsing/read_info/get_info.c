@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:23:44 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/12 16:52:46 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/13 22:37:04 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ void	init_struct(char *line, t_info *info)
 	int		x;
 
 	i = 0;
-	while (line[i] == ' ')
+	while (line[i] && line[i] == ' ')
 		i++;
 	x = i;
 	len = 0;
-	while (line[x] != ' ' && ++x)
+	while (line[x] && line[x] != ' ' && ++x)
 		len++;
 	info->id = ft_substr(line, i, len);
 	i = x;
-	while (line[i] == ' ')
+	while (line[i] && line[i] == ' ')
 		++i;
 	x = i;
 	len = 0;
-	while (line[x] != ' ' && ++x)
+	while (line[x] && line[x] != ' ' && ++x)
 		len++;
 	info->content = ft_substr(line, i, len);
 }

@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/12 17:48:18 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:46:04 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "fcntl.h"
 #include "unistd.h"
 #include "../src/libft/libft.h"
-
+#include <mlx.h>
 typedef struct s_info
 {
 	char	*id;
@@ -43,5 +43,11 @@ int		check_end_infos(char *line);
 char	**get_map(t_cub3d cub);
 char	*strjoin_small(char *s1, char c);
 int		check_map(char **map);
+char	**dup_tab(char **map);
+int		get_tab_len(char **tab);
+void	tab_free(char **tab);
+int		ft_strchr_index(char *s, char c);
+void	ft_swap(char *c1, char *c2);
+
 
 #endif

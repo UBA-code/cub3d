@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   tab_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 15:37:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/14 22:24:54 by ybel-hac         ###   ########.fr       */
+/*   Created: 2023/03/14 12:01:17 by ybel-hac          #+#    #+#             */
+/*   Updated: 2023/03/14 12:04:18 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
 
-void	ft_error(char *s)
+void	tab_free(char **tab)
 {
 	int	i;
 
 	i = -1;
-	ft_putstr_fd("\033[0;31m", 2);
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd(s, 2);
-	ft_putstr_fd("\033[0;37m", 2);
-	exit(EXIT_FAILURE);
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
 }
