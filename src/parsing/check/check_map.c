@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:42:47 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/14 22:34:22 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:28:13 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,57 +90,55 @@ typedef struct s_recursion_utils
 	char **mp;
 }	t_recursion_utils;
 
+void	get_player_position(char **map, int *y, int *x)
+{
+	int i;
+	int	temp;
+
+	i = 0;
+	*y = 0;
+	*x = 0;
+	while (map[*y])
+	{
+		temp = ft_strchr_index(map[*y], 'N');
+		if (temp != -1)
+		{
+			*x = temp;
+			return ;
+		}
+		++*y;
+	}
+}
+
 void	recursion_check(char **map)
 {
 	int	y;
 	int	x;
 
-	y = -1;
-	while (map[++y])
+	get_player_position(map, &y, &x);
+	if (map[y][x + 1] && map[y][x + 1] != '1' && map[y][x + 1] != '*')
 	{
-		x = ft_strchr_index(map[y], 'N'); // check here on character N
-		if (x == -1)
-			continue ;
-		if (map[y][x + 1] && map[y][x + 1] != '1' && map[y][x + 1] != '*')
-		{
-			move_player(&(map[y][x + 1]), &(map[y][x]), y, x + 1);
-			// if (map[y][x + 1] == 'x')
-			// 	return (ft_error("Map not sourrended by walls\n"));
-			// map[y][x + 1] = 'N';
-			// map[y][x] = '*';
-			recursion_check(map);
-			map[y][x + 1] = '*';
-		}
-		if (map[y][x - 1] && map[y][x - 1] != '1' && map[y][x - 1] != '*')
-		{
-			move_player(&(map[y][x - 1]), &(map[y][x]), y, x - 1);
-			// if (map[y][x - 1] == 'x')
-			// 	return (ft_error("Map not sourrended by walls\n"));
-			// map[y][x - 1] = 'N';
-			// map[y][x] = '*';
-			recursion_check(map);
-			map[y][x - 1] = '*';
-		}
-		if (map[y + 1][x] && map[y + 1][x] != '1' && map[y + 1][x] != '*')
-		{
-			move_player(&(map[y + 1][x]), &(map[y][x]), y + 1, x);
-			// if (map[y + 1][x] == 'x')
-			// 	return (ft_error("Map not sourrended by walls\n"));
-			// map[y + 1][x] = 'N';
-			// map[y][x] = '*';
-			recursion_check(map);
-			map[y + 1][x] = '*';
-		}
-		if (map[y - 1][x] && map[y - 1][x] != '1' && map[y - 1][x] != '*')
-		{
-			move_player(&(map[y - 1][x]), &(map[y][x]), y - 1, x);
-			// if (map[y - 1][x] == 'x')
-			// 	return (ft_error("Map not sourrended by walls\n"));
-			// map[y - 1][x] = 'N';
-			// map[y][x] = '*';
-			recursion_check(map);
-			map[y - 1][x] = '*';
-		}
+		move_player(&(map[y][x + 1]), &(map[y][x]), y, x + 1);
+		recursion_check(map);
+		map[y][x + 1] = '*';
+	}
+	if (map[y][x - 1] && map[y][x - 1] != '1' && map[y][x - 1] != '*')
+	{
+		move_player(&(map[y][x - 1]), &(map[y][x]), y, x - 1);
+		recursion_check(map);
+		map[y][x - 1] = '*';
+	}
+	if (map[y + 1][x] && map[y + 1][x] != '1' && map[y + 1][x] != '*')
+	{
+		move_player(&(map[y + 1][x]), &(map[y][x]), y + 1, x);
+		recursion_check(map);
+		map[y + 1][x] = '*';
+	}
+	if (map[y - 1][x] && map[y - 1][x] != '1' && map[y - 1][x] != '*')
+	{
+		move_player(&(map[y - 1][x]), &(map[y][x]), y - 1, x);
+		recursion_check(map);
+		map[y - 1][x] = '*';
 	}
 }
 // 34
