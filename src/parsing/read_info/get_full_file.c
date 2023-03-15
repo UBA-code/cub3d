@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:28:17 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/09 17:53:53 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:46:55 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	get_lines_len(char *file)
 	{
 		temp = get_next_line(fd);
 		if (!temp)
-			break;
+			break ;
 		if (check_empty(temp))
 			len++;
 		free(temp);
@@ -47,7 +47,7 @@ char	**get_full_file(char *file)
 	{
 		temp = get_next_line(fd);
 		if (!temp)
-			break;
+			break ;
 		full_file[i++] = temp;
 	}
 	close(fd);

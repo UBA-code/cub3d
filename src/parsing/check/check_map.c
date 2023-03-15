@@ -6,52 +6,11 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:42:47 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/15 11:28:13 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:47:40 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
-
-int	check_characters(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] && line[i] != '\n')
-	{
-		if (!(line[i] == '0' || line[i] == '1' || line[i] == 'N'
-			|| line[i] == 'S' || line[i] == 'E' || line[i] == 'W'
-			|| line[i] == ' '))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-void	copy_map(char **dst, char *src, int len)
-{
-	int	i;
-	int	x;
-
-	x = -1;
-	i = 0;
-	*dst = ft_calloc(sizeof(char), len + 3);
-	while (++x < len + 2)
-		(*dst)[x] = 'x';
-	x = 1;
-	while (src[i])
-	{
-		if (src[i] == '\n')
-			break;
-		if (src[i] == ' ')
-			(*dst)[x] = 'x';
-		else
-			(*dst)[x] = src[i];
-		x++;
-		i++;
-	}
-	(*dst)[ft_strlen(*dst) - 1] = '\n';
-}
 
 char	**get_dup_map(char **map)
 {
@@ -65,7 +24,7 @@ char	**get_dup_map(char **map)
 	x = 0;
 	big_len = 0;
 	while (map[++i])
-		if (ft_strlen(map[i]) > big_len)
+		if (ft_strlen(map[i]) > (size_t)big_len)
 			big_len = ft_strlen(map[i]);
 	i = -1;
 	copy_map(&(final[x++]), "", big_len);
@@ -75,24 +34,9 @@ char	**get_dup_map(char **map)
 	return (final);
 }
 
-void	move_player(char *c1, char *c2, int y, int x)
+void	get_player_position(char **map, int *y, int *x, char c)
 {
-	if (*c1 == 'x')
-		return (ft_error("Map not sourrended by walls\n"));
-	*c1 = 'N';
-	*c2 = '*';
-}
-
-typedef struct s_recursion_utils
-{
-	int	y;
-	int	x;
-	char **mp;
-}	t_recursion_utils;
-
-void	get_player_position(char **map, int *y, int *x)
-{
-	int i;
+	int	i;
 	int	temp;
 
 	i = 0;
@@ -100,7 +44,7 @@ void	get_player_position(char **map, int *y, int *x)
 	*x = 0;
 	while (map[*y])
 	{
-		temp = ft_strchr_index(map[*y], 'N');
+		temp = ft_strchr_index(map[*y], c);
 		if (temp != -1)
 		{
 			*x = temp;
@@ -110,62 +54,55 @@ void	get_player_position(char **map, int *y, int *x)
 	}
 }
 
-void	recursion_check(char **map)
+void	recursion_check(char **map, int y, int x, char c)
 {
-	int	y;
-	int	x;
-
-	get_player_position(map, &y, &x);
+	get_player_position(map, &y, &x, c);
 	if (map[y][x + 1] && map[y][x + 1] != '1' && map[y][x + 1] != '*')
 	{
-		move_player(&(map[y][x + 1]), &(map[y][x]), y, x + 1);
-		recursion_check(map);
-		map[y][x + 1] = '*';
+		move_player(&(map[y][x + 1]), &(map[y][x]), c);
+		recursion_check(map, 0, 0, c);
+		move_back(&(map[y][x + 1]), &(map[y][x]), c);
 	}
 	if (map[y][x - 1] && map[y][x - 1] != '1' && map[y][x - 1] != '*')
 	{
-		move_player(&(map[y][x - 1]), &(map[y][x]), y, x - 1);
-		recursion_check(map);
-		map[y][x - 1] = '*';
+		move_player(&(map[y][x - 1]), &(map[y][x]), c);
+		recursion_check(map, 0, 0, c);
+		move_back(&(map[y][x - 1]), &(map[y][x]), c);
 	}
 	if (map[y + 1][x] && map[y + 1][x] != '1' && map[y + 1][x] != '*')
 	{
-		move_player(&(map[y + 1][x]), &(map[y][x]), y + 1, x);
-		recursion_check(map);
-		map[y + 1][x] = '*';
+		move_player(&(map[y + 1][x]), &(map[y][x]), c);
+		recursion_check(map, 0, 0, c);
+		move_back(&(map[y + 1][x]), &(map[y][x]), c);
 	}
 	if (map[y - 1][x] && map[y - 1][x] != '1' && map[y - 1][x] != '*')
 	{
-		move_player(&(map[y - 1][x]), &(map[y][x]), y - 1, x);
-		recursion_check(map);
-		map[y - 1][x] = '*';
+		move_player(&(map[y - 1][x]), &(map[y][x]), c);
+		recursion_check(map, 0, 0, c);
+		move_back(&(map[y - 1][x]), &(map[y][x]), c);
 	}
 }
-// 34
-int	check_surounded(char **map)
+
+int	check_surounded(char **map, char player)
 {
-	char **dup_map;
+	char	**dup_map;
 
 	dup_map = get_dup_map(map);
-	recursion_check(dup_map);
-	int	i = 0;
+	recursion_check(dup_map, 0, 0, player);
 	tab_free(dup_map);
-	return (0);
+	return (1);
 }
 
 int	check_map(char **map)
 {
-	int	i;
+	int		i;
+	char	player;
 
 	i = 0;
-	if (!check_surounded(map))
+	player = get_player(map);
+	check_characters(map);
+	if (!check_surounded(map, player))
 		return (0);
-	while (map[i])
-	{
-		if (!check_characters(map[i]))
-			ft_error("check map characters please\n");
-		i++;
-	}
 	return (1);
 }
 

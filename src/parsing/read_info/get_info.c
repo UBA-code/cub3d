@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:23:44 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/13 22:37:04 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:46:39 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	init_struct(char *line, t_info *info)
 {
 	int		i;
-	char	*temp;
 	int		len;
 	int		x;
 
@@ -61,11 +60,10 @@ int	check_end_infos(char *line)
 	return (0);
 }
 
-t_info *get_infos(t_cub3d *cub)
+t_info	*get_infos(t_cub3d *cub)
 {
 	int		i;
 	t_info	*info;
-	char	*temp;
 	int		x;
 
 	x = 0;
@@ -73,7 +71,8 @@ t_info *get_infos(t_cub3d *cub)
 	i = 0;
 	while (cub->full_file[i])
 	{
-		if (check_empty(cub->full_file[i]) && check_end_infos(cub->full_file[i]))
+		if (check_empty(cub->full_file[i])
+			&& check_end_infos(cub->full_file[i]))
 			init_struct(cub->full_file[i], &(info[x++]));
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:34:56 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/14 11:25:40 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:45:03 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	**dup_tab(char **map)
 	char	**final;
 	int		i;
 	int		x;
-	
+
 	i = 0;
 	x = 0;
 	final = ft_calloc(sizeof(char *), get_tab_len(map) + 1);

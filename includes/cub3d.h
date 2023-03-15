@@ -6,20 +6,21 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/14 19:46:04 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:48:47 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
-#include "math.h"
-#include "stdlib.h"
-#include "stdio.h"
-#include "fcntl.h"
-#include "unistd.h"
-#include "../src/libft/libft.h"
-#include <mlx.h>
+# include "math.h"
+# include "stdlib.h"
+# include "stdio.h"
+# include "fcntl.h"
+# include "unistd.h"
+# include "../src/libft/libft.h"
+# include <mlx.h>
+
 typedef struct s_info
 {
 	char	*id;
@@ -34,7 +35,6 @@ typedef struct s_cub3d
 	int		info_size;
 }	t_cub3d;
 
-
 void	ft_error(char *s);
 t_info	*get_infos(t_cub3d *cub);
 int		check_empty(char *line);
@@ -48,6 +48,10 @@ int		get_tab_len(char **tab);
 void	tab_free(char **tab);
 int		ft_strchr_index(char *s, char c);
 void	ft_swap(char *c1, char *c2);
-
+void	move_player(char *c1, char *c2, char player);
+int		check_characters(char **map);
+void	copy_map(char **dst, char *src, int len);
+char	get_player(char **map);
+void	move_back(char *c1, char *c2, char player);
 
 #endif
