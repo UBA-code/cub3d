@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:42:47 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/15 14:47:40 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/17 23:09:22 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,54 +54,49 @@ void	get_player_position(char **map, int *y, int *x, char c)
 	}
 }
 
-void	recursion_check(char **map, int y, int x, char c)
+void	check_outside(char **map)
 {
-	get_player_position(map, &y, &x, c);
-	if (map[y][x + 1] && map[y][x + 1] != '1' && map[y][x + 1] != '*')
+	int	y;
+	int	x;
+
+	y = -1;
+	while (map[++y])
 	{
-		move_player(&(map[y][x + 1]), &(map[y][x]), c);
-		recursion_check(map, 0, 0, c);
-		move_back(&(map[y][x + 1]), &(map[y][x]), c);
-	}
-	if (map[y][x - 1] && map[y][x - 1] != '1' && map[y][x - 1] != '*')
-	{
-		move_player(&(map[y][x - 1]), &(map[y][x]), c);
-		recursion_check(map, 0, 0, c);
-		move_back(&(map[y][x - 1]), &(map[y][x]), c);
-	}
-	if (map[y + 1][x] && map[y + 1][x] != '1' && map[y + 1][x] != '*')
-	{
-		move_player(&(map[y + 1][x]), &(map[y][x]), c);
-		recursion_check(map, 0, 0, c);
-		move_back(&(map[y + 1][x]), &(map[y][x]), c);
-	}
-	if (map[y - 1][x] && map[y - 1][x] != '1' && map[y - 1][x] != '*')
-	{
-		move_player(&(map[y - 1][x]), &(map[y][x]), c);
-		recursion_check(map, 0, 0, c);
-		move_back(&(map[y - 1][x]), &(map[y][x]), c);
+		x = -1;
+		while (map[y][++x])
+		{
+			if (map[y][x] == 'x')
+			{
+				if (map[y][x + 1] && map[y][x + 1] != 'x'
+					&& map[y][x + 1] != '1')
+					ft_error("not surrounded\n");
+				if (x != 0 && map[y][x - 1] && map[y][x - 1] != 'x'
+					&& map[y][x - 1] != '1')
+					ft_error("not surrounded\n");
+				if (map[y + 1] && map[y + 1][x] != 'x' && map[y + 1][x] != '1')
+					ft_error("not surrounded\n");
+				if (y != 0 && map[y - 1] && map[y - 1][x] != 'x'
+					&& map[y - 1][x] != '1')
+					ft_error("not surrounded\n");
+			}
+		}
 	}
 }
 
-int	check_surounded(char **map, char player)
+int	check_surounded(char **map)
 {
 	char	**dup_map;
 
 	dup_map = get_dup_map(map);
-	recursion_check(dup_map, 0, 0, player);
+	check_outside(dup_map);
 	tab_free(dup_map);
 	return (1);
 }
 
 int	check_map(char **map)
 {
-	int		i;
-	char	player;
-
-	i = 0;
-	player = get_player(map);
 	check_characters(map);
-	if (!check_surounded(map, player))
+	if (!check_surounded(map))
 		return (0);
 	return (1);
 }
