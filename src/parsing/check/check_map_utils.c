@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 11:56:01 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/15 14:47:15 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/17 11:47:52 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	check_characters(char **map)
 	while (map[y])
 	{
 		x = 0;
-		while (map[y][x] && map[y][x] != '\n')
+		while (map[y][x])
 		{
 			if (!(map[y][x] == '0' || map[y][x] == '1' || map[y][x] == 'N'
 				|| map[y][x] == 'S' || map[y][x] == 'E' || map[y][x] == 'W'
@@ -91,6 +91,7 @@ char	get_player(char **map)
 			return ('W');
 		i++;
 	}
+	ft_error("No player found\n");
 	return (0);
 }
 

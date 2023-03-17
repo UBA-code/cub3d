@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 11:38:43 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/15 14:46:07 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/17 11:46:23 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	get_map_size(char **file, int *i)
 	len = 0;
 	--*i;
 	while (file[++*i])
-		if (check_empty(file[*i]) && !check_end_infos(file[*i]))
+		if (check_empty(file[*i], '0') && !check_end_infos(file[*i]))
 			break ;
 	x = *i;
 	while (file[x])
@@ -31,13 +31,15 @@ int	get_map_size(char **file, int *i)
 	return (len);
 }
 
-void	map_copy(char **dst, char *src, int len)
+void	map_copy(char **dst, char *src, char *next)
 {
 	int	i;
 
 	i = -1;
-	*dst = ft_calloc(sizeof(char), len + 1);
-	while (src[++i])
+	if (!next && src[ft_strlen(src) - 1] == '\n')
+		ft_error("new line at end of map\n");
+	*dst = ft_calloc(sizeof(char), ft_strlen(src) + 1);
+	while (src[++i] && src[i] != '\n')
 		(*dst)[i] = src[i];
 }
 
@@ -56,7 +58,7 @@ char	**get_map(t_cub3d cub)
 	{
 		if (cub.full_file[i][0] == '\n')
 			ft_error("the map has empty line inside\n");
-		map[x++] = cub.full_file[i];
+		map_copy(&map[x++], cub.full_file[i], cub.full_file[i + 1]);
 		i++;
 	}
 	return (map);

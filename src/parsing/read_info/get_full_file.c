@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:28:17 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/15 14:46:55 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:44:22 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_lines_len(char *file)
 		temp = get_next_line(fd);
 		if (!temp)
 			break ;
-		if (check_empty(temp))
+		if (check_empty(temp, '0'))
 			len++;
 		free(temp);
 	}

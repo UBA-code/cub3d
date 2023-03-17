@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/15 14:48:47 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:34:44 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_cub3d
 
 void	ft_error(char *s);
 t_info	*get_infos(t_cub3d *cub);
-int		check_empty(char *line);
+int		check_empty(char *line, char c);
 char	**get_full_file(char *file);
 int		check_end_infos(char *line);
 char	**get_map(t_cub3d cub);
@@ -53,5 +53,7 @@ int		check_characters(char **map);
 void	copy_map(char **dst, char *src, int len);
 char	get_player(char **map);
 void	move_back(char *c1, char *c2, char player);
+void	check_info(t_cub3d cub);
+void	check_colors(t_cub3d *cub);
 
 #endif

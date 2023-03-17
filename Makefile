@@ -6,7 +6,7 @@
 #    By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 15:18:36 by ybel-hac          #+#    #+#              #
-#    Updated: 2023/03/15 14:21:45 by ybel-hac         ###   ########.fr        #
+#    Updated: 2023/03/17 16:37:26 by ybel-hac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ SRCS = cub3d.c \
 		$(PARSING_PATH)read_info/get_full_file.c \
 		$(PARSING_PATH)read_info/get_map.c \
 		$(PARSING_PATH)check/check_map.c \
-		$(PARSING_PATH)check/check_map_utils.c
+		$(PARSING_PATH)check/check_map_utils.c \
+		$(PARSING_PATH)check/check_info.c \
+		$(PARSING_PATH)check/check_colors.c
 OBG = $(SRCS:.c=.o)
 CFLAGS = -Wall -Werror -Wextra
 # CFLAGS = -fsanitize=thread -g3

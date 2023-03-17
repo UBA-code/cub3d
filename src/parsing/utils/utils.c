@@ -6,20 +6,22 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:38:26 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/15 14:44:47 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:47:32 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
 
-int	check_empty(char *line)
+int	check_empty(char *line, char c)
 {
 	int	i;
 
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != ' ')
+		if (c == 'N' && line[i] != ' ' && line[i] != '\n')
+			return (1);
+		if (c != 'N' && line[i] != ' ')
 			return (1);
 		i++;
 	}
