@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:08:06 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/17 23:09:42 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:12:35 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,21 @@ int	main(int ac, char **av)
 	cub.full_file = get_full_file(av[1]);
 	cub.info = get_infos(&cub);
 	cub.map = get_map(cub);
-	// int i = 0;
+	int i = 0;
 	check_info(cub);
 	check_map(cub.map);
 	check_colors(&cub);
-	// while (i < cub.info_size)
-	// {
-	// 	printf("%s", cub.info[i].id);
-	// 	printf("%s\n", cub.info[i].content);
-	// 	i++;
-	// }
-	// i = 0;
-	// while (cub.map[i])
-	// {
-	// 	printf("%s\n", cub.map[i]);
-	// 	i++;
-	// }
+	while (i < cub.info_size)
+	{
+		printf("%s", cub.info[i].id);
+		printf("%s\n", cub.info[i].content);
+		i++;
+	}
+	i = 0;
+	while (cub.map[i])
+	{
+		printf("%s\n", cub.map[i]);
+		i++;
+	}
 	return (0);
 }

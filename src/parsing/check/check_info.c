@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:38:28 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/17 16:37:40 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:17:35 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void	check_info(t_cub3d cub)
 	i = 0;
 	while (i < cub.info_size)
 	{
+		if (!cub.info[i].content)
+			ft_error("info value not detected\n");
 		check_info_name(cub.info[i]);
 		i++;
 	}
