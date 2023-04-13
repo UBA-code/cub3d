@@ -1,7 +1,7 @@
-EA ../Documents/cub3d/maps/test_map.cub
-NO ../Documents/cub3d/maps/test_map.cub
-SO ../Documents/cub3d/maps/test_map.cub
-WE ../Documents/cub3d/maps/test_map.cub
+EA ./maps/test_map.cub
+NO ./maps/test_map.cub
+SO ./maps/test_map.cub
+WE ./maps/test_map.cub
 C 225,30,0
 F 220,100,0
 

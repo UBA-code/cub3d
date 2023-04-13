@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 11:38:43 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/17 11:46:23 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:52:39 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,20 @@ void	map_copy(char **dst, char *src, char *next)
 		(*dst)[i] = src[i];
 }
 
-char	**get_map(t_cub3d cub)
+char	**get_map(t_cub3d *cub)
 {
 	int		i;
 	char	**map;
 	int		x;
-	int		big_len;
 
 	x = 0;
 	i = 0;
-	big_len = 0;
-	map = ft_calloc(sizeof(char *), get_map_size(cub.full_file, &i) + 1);
-	while (cub.full_file[i])
+	map = ft_calloc(sizeof(char *), get_map_size(cub->full_file, &i) + 1);
+	while (cub->full_file[i])
 	{
-		if (cub.full_file[i][0] == '\n')
+		if (cub->full_file[i][0] == '\n')
 			ft_error("the map has empty line inside\n");
-		map_copy(&map[x++], cub.full_file[i], cub.full_file[i + 1]);
+		map_copy(&map[x++], cub->full_file[i], cub->full_file[i + 1]);
 		i++;
 	}
 	return (map);

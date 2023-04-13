@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:42:47 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/17 23:09:22 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:58:01 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,8 @@ char	**get_dup_map(char **map)
 
 void	get_player_position(char **map, int *y, int *x, char c)
 {
-	int	i;
 	int	temp;
 
-	i = 0;
 	*y = 0;
 	*x = 0;
 	while (map[*y])
@@ -93,11 +91,27 @@ int	check_surounded(char **map)
 	return (1);
 }
 
-int	check_map(char **map)
+void	get_map_sizes(t_cub3d *cub)
+{
+	int	y;
+
+	y = 0;
+	cub->map_width = 0;
+	while (cub->map[y])
+	{
+		if (ft_strlen(cub->map[y]) > cub->map_width)
+			cub->map_width = ft_strlen(cub->map[y]);
+		y++;
+	}
+	cub->map_height = y;
+}
+
+int	check_map(char **map, t_cub3d *cub)
 {
 	check_characters(map);
 	if (!check_surounded(map))
 		return (0);
+	get_map_sizes(cub);
 	return (1);
 }
 
