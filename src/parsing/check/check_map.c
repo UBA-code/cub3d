@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:42:47 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/13 15:58:01 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:13:24 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	get_map_sizes(t_cub3d *cub)
 	cub->map_width = 0;
 	while (cub->map[y])
 	{
-		if (ft_strlen(cub->map[y]) > cub->map_width)
+		if ((int)ft_strlen(cub->map[y]) > cub->map_width)
 			cub->map_width = ft_strlen(cub->map[y]);
 		y++;
 	}

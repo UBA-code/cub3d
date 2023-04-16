@@ -6,19 +6,11 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 11:56:01 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/17 23:07:41 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/15 21:32:25 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
-
-void	move_player(char *c1, char *c2, char player)
-{
-	if (*c1 == 'x')
-		return (ft_error("Map not sourrended by walls\n"));
-	*c1 = player;
-	*c2 = '*';
-}
 
 int	check_characters(char **map)
 {

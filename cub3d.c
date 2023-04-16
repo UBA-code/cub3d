@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:08:06 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/13 16:01:44 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/16 15:10:23 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	main(int ac, char **av)
 	check_info(cub);
 	check_map(cub.map, &cub);
 	check_colors(&cub);
+	draw_2dmap(&cub);
 	while (i < cub.info_size)
 	{
 		printf("%s", cub.info[i].id);
@@ -70,3 +71,4 @@ int	main(int ac, char **av)
 	free_utils(cub);
 	return (0);
 }
+

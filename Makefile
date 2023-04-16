@@ -6,7 +6,7 @@
 #    By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 15:18:36 by ybel-hac          #+#    #+#              #
-#    Updated: 2023/04/13 15:29:59 by ybel-hac         ###   ########.fr        #
+#    Updated: 2023/04/16 18:05:44 by ybel-hac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCS = cub3d.c \
 		$(PARSING_PATH)utils/utils.c \
 		$(PARSING_PATH)utils/ft_swap.c \
 		$(PARSING_PATH)utils/dup_tab.c \
+		$(PARSING_PATH)utils/ft_exit.c \
 		$(PARSING_PATH)utils/tab_free.c \
 		$(PARSING_PATH)utils/free_utils.c \
 		$(PARSING_PATH)utils/small_join.c \
@@ -26,10 +27,12 @@ SRCS = cub3d.c \
 		$(PARSING_PATH)check/check_map.c \
 		$(PARSING_PATH)check/check_map_utils.c \
 		$(PARSING_PATH)check/check_info.c \
-		$(PARSING_PATH)check/check_colors.c
-OBG = $(SRCS:.c=.o)
-CFLAGS = -Wall -Werror -Wextra
-CFLAGS = -fsanitize=address
+		$(PARSING_PATH)check/check_colors.c \
+		$(PARSING_PATH)draw_map/draw_2dmap.c \
+		$(PARSING_PATH)draw_map/render_mini.c
+OBJ = $(SRCS:.c=.o)
+# CFLAGS = -Wall -Werror -Wextra
+CFLAGS += -fsanitize=address
 LIBS = libft
 # MLX = -Iminilibx/
 MLX = -lX11 -lXext -lmlx
@@ -38,20 +41,23 @@ OBJDIR=obj
 
 all: $(LIBS) $(NAME)
 
-$(NAME): $(OBG)
-	$(CC) -I src/libft $(CFLAGS) $(OBG) src/libft/libft.a $(MLX) -o $(NAME)
+$(NAME): $(OBJ)
+	$(CC) -I src/libft $(CFLAGS) $(OBJ) src/libft/libft.a $(MLX) -o $(NAME)
 
 $(LIBS):
 	make -C src/libft
 
 clean:
-	rm -rf $(OBG)
+	rm -rf $(OBJ)
 	make -C src/libft clean
 
 fclean: clean
 	rm -rf $(NAME)
 	make -C src/libft fclean
 
+reload:
+	rm -rf $(OBJ)
+	make $(all)
 re: fclean all
 
 .PHONY: all clean fclean re
