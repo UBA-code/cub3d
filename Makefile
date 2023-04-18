@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/09 15:18:36 by ybel-hac          #+#    #+#              #
-#    Updated: 2023/04/16 18:05:44 by ybel-hac         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 PARSING_PATH= ./src/parsing/
 EXECUTION_PATH= ./src/execution/
 SRCS = cub3d.c \
@@ -32,7 +20,7 @@ SRCS = cub3d.c \
 		$(PARSING_PATH)draw_map/render_mini.c
 OBJ = $(SRCS:.c=.o)
 # CFLAGS = -Wall -Werror -Wextra
-CFLAGS += -fsanitize=address
+CFLAGS += -fsanitize=address -g3
 LIBS = libft
 # MLX = -Iminilibx/
 MLX = -lX11 -lXext -lmlx
@@ -42,7 +30,7 @@ OBJDIR=obj
 all: $(LIBS) $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -I src/libft $(CFLAGS) $(OBJ) src/libft/libft.a $(MLX) -o $(NAME)
+	$(CC) -I src/libft $(CFLAGS) $(OBJ) src/libft/libft.a $(MLX) -lm -o $(NAME)
 
 $(LIBS):
 	make -C src/libft

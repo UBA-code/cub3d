@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:38:26 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/16 13:47:32 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/17 00:46:11 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,13 @@ int	check_empty(char *line, char c)
 		i++;
 	}
 	return (0);
+}
+
+
+int	my_abs(int x)
+{
+    if (x < 0)
+        return -x;
+	else
+        return x;
 }
