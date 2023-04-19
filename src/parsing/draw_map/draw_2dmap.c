@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:11:40 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/18 15:32:58 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/19 00:37:57 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,43 @@ int	check_wall(t_cub3d *cub, int new_x, int new_y)
 	int	x;
 	int	x_check;
 	int	y;
-	int	y_check;
 
-	x = round(new_x / (TILE_SIZE + 1));
-	x_check = round((new_x) / (TILE_SIZE + 1));
-	y = round(new_y / (TILE_SIZE + 1));
-	y_check = round((new_y) / (TILE_SIZE + 1));
-	if (cub->map[y][x] == '1' || cub->map[y_check][x_check] == '1')
+	x = floor((new_x) / (TILE_SIZE * SCALE_SIZE + 1));
+	x_check = floor((new_x + 1) / (TILE_SIZE * SCALE_SIZE + 1));
+	y = floor((new_y) / (TILE_SIZE * SCALE_SIZE + 1));
+	if (cub->map[y][x] == '1' || cub->map[y][x_check] == '1')
 		return (1);
 	return (0);
 }
 
-void	move_player(t_cub3d *cub, int x, int y)
+void	move_player(t_cub3d *cub, int x, int y, char c)
 {
-	if (!check_wall(cub, x, y))
+	int	temp;
+
+	temp = 0;
+	if (c == 'u')
 	{
-		cub->player.x_old = cub->player.x;
-		cub->player.y_old = cub->player.y;
-		cub->player.y = y;
+		while (!check_wall(cub, x, --y) && temp++ < PLAYER_SPEED)
+			cub->player.y = y;
 		cub->player.x = x;
+	}
+	else if (c == 'd')
+	{
+		while (!check_wall(cub, x, ++y) && temp++ < PLAYER_SPEED)
+			cub->player.y = y;
+		cub->player.x = x;
+	}
+	else if (c == 'r')
+	{
+		while (!check_wall(cub, ++x, y) && temp++ < PLAYER_SPEED)
+			cub->player.x = x;
+		cub->player.y = y;
+	}
+	else if (c == 'l')
+	{
+		while (!check_wall(cub, --x, y) && temp++ < PLAYER_SPEED)
+			cub->player.x = x;
+		cub->player.y = y;
 	}
 }
 
@@ -46,13 +64,13 @@ int	move_check(int keycode, void *cub_ptr)
 
 	cub = (t_cub3d *)cub_ptr;
 	if (keycode == UP)
-		move_player(cub, cub->player.x, cub->player.y - PLAYER_SPEED);
+		move_player(cub, cub->player.x, cub->player.y, 'u');
 	else if (keycode == DOWN)
-		move_player(cub, cub->player.x, cub->player.y + PLAYER_SPEED);
+		move_player(cub, cub->player.x, cub->player.y, 'd');
 	else if (keycode == RIGHT)
-		move_player(cub, cub->player.x + PLAYER_SPEED, cub->player.y);
+		move_player(cub, cub->player.x, cub->player.y, 'r');
 	else if (keycode == LEFT)
-		move_player(cub, cub->player.x - PLAYER_SPEED, cub->player.y);
+		move_player(cub, cub->player.x, cub->player.y, 'l');
 	else if (keycode == LEFT_ARROW)
 		cub->player.angel -= TURN_SPEED;
 	else if (keycode == RIGHT_ARROW)
@@ -63,6 +81,7 @@ int	move_check(int keycode, void *cub_ptr)
 		ft_exit(cub, 0);
 	}
 	// render_2dmap(cub);
+	return (1);
 }
 
 void	draw_2dmap(t_cub3d *cub)

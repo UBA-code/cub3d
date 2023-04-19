@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/18 15:31:59 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/19 00:41:41 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #define FLOOR_COLOR 0x0000ffff
 #define PLAYER_COLOR 0x00ff0000
 #define TILE_SIZE	32
+#define SCALE_SIZE	0.3
 #define PI			3.141592653589793238
 #define UP		119
 #define DOWN	115
@@ -64,8 +65,6 @@ typedef struct s_my_mlx
 
 typedef struct s_player
 {
-	float		y_old;
-	float		x_old;
 	float		y;
 	float		x;
 	float		dirX;
@@ -76,6 +75,7 @@ typedef struct s_player
 	float		x_inc;
 	float		y_inc;
 	float		angel;
+	char		dir;
 }	t_player;
 
 typedef struct s_cub3d
@@ -126,9 +126,15 @@ void	draw_player(t_cub3d *cub, int y_pos, int x_pos, int color);
 void	my_mlx_put_pixel(t_my_mlx *data, int y, int x, int color);
 void	new_main_img(t_cub3d *cub, t_my_mlx *data);
 void	new_img(t_cub3d *cub, int y_pos, int x_pos,
-			int color, int heigth, int width);
+int		color, int heigth, int width);
 void	init_player(t_cub3d *cub);
 void	new_main_img(t_cub3d *cub, t_my_mlx *data);
 int		check_wall(t_cub3d *cub, int new_x, int new_y);
+int		move_check(int keycode, void *cub_ptr);
+
+// player
+void	init_player(t_cub3d *cub);
+void	draw_line(t_cub3d *cub);
+void	draw_player(t_cub3d *cub, int y_pos, int x_pos, int color);
 
 #endif

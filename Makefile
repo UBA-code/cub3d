@@ -17,7 +17,8 @@ SRCS = cub3d.c \
 		$(PARSING_PATH)check/check_info.c \
 		$(PARSING_PATH)check/check_colors.c \
 		$(PARSING_PATH)draw_map/draw_2dmap.c \
-		$(PARSING_PATH)draw_map/render_mini.c
+		$(PARSING_PATH)draw_map/render_mini.c \
+		$(PARSING_PATH)draw_map/player.c
 OBJ = $(SRCS:.c=.o)
 # CFLAGS = -Wall -Werror -Wextra
 CFLAGS += -fsanitize=address -g3
