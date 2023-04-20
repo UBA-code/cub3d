@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:38:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/19 00:31:07 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/20 02:32:36 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ void	my_mlx_put_pixel(t_my_mlx *data, int y, int x, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	new_main_img(t_cub3d *cub, t_my_mlx *data)
+void	new_main_img(t_cub3d *cub, t_my_mlx *data, int width, int heigth)
 {
 	int			y;
 	int			x;
 
 	data->img = mlx_new_image(cub->mlx.mlxPtr,
-		cub->window_width, cub->window_heigth);
+		width, heigth);
 	data->pixel_data = mlx_get_data_addr(data->img, &(data->bits_per_pixel),
 		&(data->size_line), &(data->endian));
 }
 
-void	new_img(t_cub3d *cub, int y_pos, int x_pos, int color, int hiegth, int width)
+void	new_img(t_my_mlx *data, int y_pos, int x_pos, int color, int hiegth, int width)
 {
 	int			y;
 	int			x;
@@ -42,7 +42,7 @@ void	new_img(t_cub3d *cub, int y_pos, int x_pos, int color, int hiegth, int widt
 		x = x_pos;
 		while (x < x_pos + width)
 		{
-			my_mlx_put_pixel(&cub->img, y, x, color);
+			my_mlx_put_pixel(data, y, x, color);
 			x++;
 		}
 		y++;
@@ -59,7 +59,10 @@ int	render_2dmap(t_cub3d *cub)
 	y = -1;
 	y_pos = 0;
 	mlx_clear_window(cub->mlx.mlxPtr, cub->mlx.win);   // ! check
-	new_img(cub, 0, 0, 0x00000000, cub->window_heigth, cub->window_width);
+	// mlx_clear_window(cub->mlx.mlxPtr, cub->map_mlx.win);   // ! check
+	new_img(&cub->map_img, 0, 0, 0x00000000, cub->window_heigth, cub->window_width);
+	new_img(&cub->img, 0, 0, 0x00000000, cub->window_heigth * SCALE_SIZE,
+			cub->window_width * SCALE_SIZE);
 	while (cub->map[++y])
 	{
 		x = -1;
@@ -67,16 +70,17 @@ int	render_2dmap(t_cub3d *cub)
 		while (cub->map[y][++x])
 		{
 			if (cub->map[y][x] == '1')
-				new_img(cub, y_pos, x_pos, WALL_COLOR, TILE_SIZE * SCALE_SIZE,
-					TILE_SIZE * SCALE_SIZE);
+				new_img(&cub->img, y_pos, x_pos, WALL_COLOR, floor(TILE_SIZE * SCALE_SIZE),
+					floor(TILE_SIZE * SCALE_SIZE));
 			else
-				new_img(cub, y_pos, x_pos, FLOOR_COLOR, TILE_SIZE * SCALE_SIZE,
-					TILE_SIZE * SCALE_SIZE);
-			x_pos += TILE_SIZE * SCALE_SIZE + 1;
+				new_img(&cub->img, y_pos, x_pos, FLOOR_COLOR, floor(TILE_SIZE * SCALE_SIZE),
+					floor(TILE_SIZE * SCALE_SIZE));
+			x_pos += floor(TILE_SIZE * SCALE_SIZE) + 1;
 		}
-		y_pos += TILE_SIZE * SCALE_SIZE + 1;
+		y_pos += floor(TILE_SIZE * SCALE_SIZE) + 1;
 	}
 	draw_player(cub, cub->player.y, cub->player.x, PLAYER_COLOR);
+	mlx_put_image_to_window(cub->mlx.mlxPtr, cub->mlx.win, cub->map_img.img, 0, 0);
 	mlx_put_image_to_window(cub->mlx.mlxPtr, cub->mlx.win, cub->img.img, 0, 0);
 	return (1);
 }

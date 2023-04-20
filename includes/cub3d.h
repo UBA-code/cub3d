@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/19 00:41:41 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/20 02:29:51 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@
 #define	ESC		65307
 #define RIGHT_ARROW	65363
 #define LEFT_ARROW	65361
-#define PLAYER_SPEED	5
-#define TURN_SPEED		5
+#define PLAYER_SPEED	2.0
+#define TURN_SPEED		5.0
 #define ANGEL	90.0
-
+#define ONE_DEGRESS 0.0174533
 typedef struct s_info
 {
 	char	*id;
@@ -76,11 +76,14 @@ typedef struct s_player
 	float		y_inc;
 	float		angel;
 	char		dir;
+	int			turn_dir;
+	int			walk_dir;
 }	t_player;
 
 typedef struct s_cub3d
 {
-	t_my_mlx	img;	
+	t_my_mlx	img;
+	t_my_mlx	map_img;
 	char		**full_file;
 	t_info		*info;
 	char		**map;
@@ -90,6 +93,7 @@ typedef struct s_cub3d
 	int			window_heigth;
 	int			window_width;
 	t_mlx		mlx;
+	t_mlx		map_mlx;
 	t_player	player;
 }	t_cub3d;
 
@@ -124,12 +128,11 @@ void	draw_2dmap(t_cub3d *cub);
 int		render_2dmap(t_cub3d *cub);
 void	draw_player(t_cub3d *cub, int y_pos, int x_pos, int color);
 void	my_mlx_put_pixel(t_my_mlx *data, int y, int x, int color);
-void	new_main_img(t_cub3d *cub, t_my_mlx *data);
-void	new_img(t_cub3d *cub, int y_pos, int x_pos,
-int		color, int heigth, int width);
+void	new_main_img(t_cub3d *cub, t_my_mlx *data, int width, int heigth);
+void	new_img(t_my_mlx *data, int y_pos, int x_pos,
+			int color, int hiegth, int width);
 void	init_player(t_cub3d *cub);
-void	new_main_img(t_cub3d *cub, t_my_mlx *data);
-int		check_wall(t_cub3d *cub, int new_x, int new_y);
+int		check_wall(t_cub3d *cub, float new_x, float new_y, int bool);
 int		move_check(int keycode, void *cub_ptr);
 
 // player
