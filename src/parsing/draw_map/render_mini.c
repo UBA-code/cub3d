@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:38:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/20 02:32:36 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/20 22:29:06 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,23 @@ void	new_img(t_my_mlx *data, int y_pos, int x_pos, int color, int hiegth, int wi
 	}
 }
 
+
+void	draw_floor_sky(t_cub3d *cub)
+{
+	float	y;
+	float	x;
+
+	y = -1;
+	while (++y < cub->window_heigth)
+	{
+		x = -1;
+		while (y < cub->window_heigth / 2 && ++x < cub->window_width )
+			my_mlx_put_pixel(&cub->map_img, y, x, 0x000099ff);
+		while (y > cub->window_heigth / 2 && ++x < cub->window_width )
+			my_mlx_put_pixel(&cub->map_img, y, x, 0x00669999);
+	}
+}
+
 int	render_2dmap(t_cub3d *cub)
 {
 	int	y;
@@ -59,10 +76,10 @@ int	render_2dmap(t_cub3d *cub)
 	y = -1;
 	y_pos = 0;
 	mlx_clear_window(cub->mlx.mlxPtr, cub->mlx.win);   // ! check
-	// mlx_clear_window(cub->mlx.mlxPtr, cub->map_mlx.win);   // ! check
 	new_img(&cub->map_img, 0, 0, 0x00000000, cub->window_heigth, cub->window_width);
 	new_img(&cub->img, 0, 0, 0x00000000, cub->window_heigth * SCALE_SIZE,
 			cub->window_width * SCALE_SIZE);
+	draw_floor_sky(cub);
 	while (cub->map[++y])
 	{
 		x = -1;

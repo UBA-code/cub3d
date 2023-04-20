@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/20 02:29:51 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/20 22:26:49 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,13 @@
 #define	ESC		65307
 #define RIGHT_ARROW	65363
 #define LEFT_ARROW	65361
-#define PLAYER_SPEED	2.0
-#define TURN_SPEED		5.0
+#define PLAYER_SPEED	5.0
+#define TURN_SPEED		1.0
 #define ANGEL	90.0
 #define ONE_DEGRESS 0.0174533
+
+#define WINDOW_WIDTH 1280
+#define WINDOW_HEIGTH 720
 typedef struct s_info
 {
 	char	*id;
@@ -126,18 +129,17 @@ int		my_abs(int x);
 
 void	draw_2dmap(t_cub3d *cub);
 int		render_2dmap(t_cub3d *cub);
-void	draw_player(t_cub3d *cub, int y_pos, int x_pos, int color);
 void	my_mlx_put_pixel(t_my_mlx *data, int y, int x, int color);
 void	new_main_img(t_cub3d *cub, t_my_mlx *data, int width, int heigth);
 void	new_img(t_my_mlx *data, int y_pos, int x_pos,
 			int color, int hiegth, int width);
 void	init_player(t_cub3d *cub);
-int		check_wall(t_cub3d *cub, float new_x, float new_y, int bool);
+int		check_wall(t_cub3d *cub, float new_x, float new_y);
 int		move_check(int keycode, void *cub_ptr);
 
 // player
 void	init_player(t_cub3d *cub);
 void	draw_line(t_cub3d *cub);
-void	draw_player(t_cub3d *cub, int y_pos, int x_pos, int color);
+void	draw_player(t_cub3d *cub, float y_pos, float x_pos, int color);
 
 #endif
