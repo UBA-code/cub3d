@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 23:03:12 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/20 22:27:20 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/22 13:59:59 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	init_player(t_cub3d *cub)
 	y_pos = 0;
 	y = -1;
 	cub->player.angel = ANGEL;
+	cub->player.turn_speed = TURN_SPEED;
+	cub->player.walk_speed = PLAYER_SPEED;
 	while (cub->map[++y])
 	{
 		x = -1;
@@ -67,7 +69,7 @@ void	draw_line(t_cub3d *cub)
 	rays = -1;
 	angel = cub->player.angel - 30.0;
 	start_x = 0;
-	while (++rays < cub->window_width)
+	while (++rays < WINDOW_WIDTH)
 	{
 		rad = angel * (PI / 180.0);
 		cub->player.dirX = cub->player.x - floor(length * cos(rad));
@@ -85,20 +87,20 @@ void	draw_line(t_cub3d *cub)
 		i = 0;
 		while (i < cub->player.steps && !check_wall(cub, floor(x), floor(y)))
 		{
-			if (floor(angel) == floor(cub->player.angel))
-				my_mlx_put_pixel(&cub->img, floor(y) * SCALE_SIZE, floor(x) * SCALE_SIZE, LINE_GREEN_COLOR);
-			else
-				my_mlx_put_pixel(&cub->img, round(y) * SCALE_SIZE, round(x) * SCALE_SIZE, LINE_COLOR); // round here because problem of one ray not drawed
+			// if (floor(angel) == floor(cub->player.angel))
+				// my_mlx_put_pixel(&cub->img, floor(y) * SCALE_SIZE, floor(x) * SCALE_SIZE, LINE_GREEN_COLOR);
+			// else
+				// my_mlx_put_pixel(&cub->img, round(y) * SCALE_SIZE, round(x) * SCALE_SIZE, LINE_COLOR); // round here because problem of one ray not drawed
 			y += cub->player.y_inc;
 			x += cub->player.x_inc;
 			i++;
 		}
 		dist = sqrt((int)pow(x - cub->player.x , 2) + (int)pow(y - cub->player.y, 2));
 		dist = dist * cos(cub->player.angel * (PI / 180.0) - angel * (PI / 180.0));
-		wall_len = wall_height(dist, TILE_SIZE, cub->window_heigth);
-		if (wall_len > cub->window_heigth)
-			wall_len = cub->window_heigth;
-		start_y = (cub->window_heigth - wall_len) / 2;
+		wall_len = wall_height(dist, TILE_SIZE, WINDOW_HEIGTH);
+		if (wall_len > WINDOW_HEIGTH)
+			wall_len = WINDOW_HEIGTH;
+		start_y = (WINDOW_HEIGTH - wall_len) / 2;
 		i = 0;
 		while (i < wall_len)
 		{
@@ -110,7 +112,7 @@ void	draw_line(t_cub3d *cub)
 			i++;
 		}
 		start_x++;
-		angel += 60.0 / cub->window_width;
+		angel += 60.0 / WINDOW_WIDTH;
 	}
 }
 
@@ -118,7 +120,7 @@ void	draw_player(t_cub3d *cub, float y_pos, float x_pos, int color)
 {
 	cub->player.x = x_pos;
 	cub->player.y = y_pos;
-	new_img(&cub->img, cub->player.y * SCALE_SIZE, cub->player.x * SCALE_SIZE,color, 5 * SCALE_SIZE,
-		5 * SCALE_SIZE);
+	// new_img(&cub->img, cub->player.y * SCALE_SIZE, cub->player.x * SCALE_SIZE,color, 5 * SCALE_SIZE,
+		// 5 * SCALE_SIZE);
 	draw_line(cub);
 }

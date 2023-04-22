@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/20 22:26:49 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/22 13:54:30 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 #define TILE_SIZE	32
 #define SCALE_SIZE	0.3
 #define PI			3.141592653589793238
+#define turn_SPEED_UP		65365
+#define turn_SPEED_DOWN		65366
 #define UP		119
 #define DOWN	115
 #define RIGHT	100
@@ -38,7 +40,7 @@
 #define	ESC		65307
 #define RIGHT_ARROW	65363
 #define LEFT_ARROW	65361
-#define PLAYER_SPEED	5.0
+#define PLAYER_SPEED	10.0
 #define TURN_SPEED		1.0
 #define ANGEL	90.0
 #define ONE_DEGRESS 0.0174533
@@ -79,8 +81,8 @@ typedef struct s_player
 	float		y_inc;
 	float		angel;
 	char		dir;
-	int			turn_dir;
-	int			walk_dir;
+	float			turn_speed;
+	float			walk_speed;
 }	t_player;
 
 typedef struct s_cub3d
