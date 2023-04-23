@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/22 13:54:30 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/23 22:40:14 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 #define WALL_COLOR 0x00ffffff
 #define FLOOR_COLOR 0x0000ffff
 #define PLAYER_COLOR 0x00ff0000
-#define TILE_SIZE	32
-#define SCALE_SIZE	0.3
+#define TILE_SIZE	100
+#define SCALE_SIZE 0.07
 #define PI			3.141592653589793238
 #define turn_SPEED_UP		65365
 #define turn_SPEED_DOWN		65366
@@ -40,7 +40,7 @@
 #define	ESC		65307
 #define RIGHT_ARROW	65363
 #define LEFT_ARROW	65361
-#define PLAYER_SPEED	10.0
+#define PLAYER_SPEED	1.0
 #define TURN_SPEED		1.0
 #define ANGEL	90.0
 #define ONE_DEGRESS 0.0174533
@@ -83,6 +83,8 @@ typedef struct s_player
 	char		dir;
 	float			turn_speed;
 	float			walk_speed;
+	int			turn;
+	int			walk;
 }	t_player;
 
 typedef struct s_cub3d

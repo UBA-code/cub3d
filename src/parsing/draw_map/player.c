@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 23:03:12 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/22 13:59:59 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/23 22:48:45 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	init_player(t_cub3d *cub)
 	cub->player.angel = ANGEL;
 	cub->player.turn_speed = TURN_SPEED;
 	cub->player.walk_speed = PLAYER_SPEED;
+	cub->player.walk = 0;
+	cub->player.turn = 0;
 	while (cub->map[++y])
 	{
 		x = -1;
@@ -85,12 +87,12 @@ void	draw_line(t_cub3d *cub)
 		y = cub->player.y;
 		x = cub->player.x;
 		i = 0;
-		while (i < cub->player.steps && !check_wall(cub, floor(x), floor(y)))
+		while (i < cub->player.steps && !check_wall(cub, (x), (y)))
 		{
-			// if (floor(angel) == floor(cub->player.angel))
-				// my_mlx_put_pixel(&cub->img, floor(y) * SCALE_SIZE, floor(x) * SCALE_SIZE, LINE_GREEN_COLOR);
-			// else
-				// my_mlx_put_pixel(&cub->img, round(y) * SCALE_SIZE, round(x) * SCALE_SIZE, LINE_COLOR); // round here because problem of one ray not drawed
+			if (floor(angel) == floor(cub->player.angel))
+				my_mlx_put_pixel(&cub->img, floor(y) * SCALE_SIZE, floor(x) * SCALE_SIZE, LINE_COLOR);
+			else
+				my_mlx_put_pixel(&cub->img, floor(y) * SCALE_SIZE, round(x) * SCALE_SIZE, LINE_COLOR); // round here because problem of one ray not drawed
 			y += cub->player.y_inc;
 			x += cub->player.x_inc;
 			i++;
@@ -120,7 +122,7 @@ void	draw_player(t_cub3d *cub, float y_pos, float x_pos, int color)
 {
 	cub->player.x = x_pos;
 	cub->player.y = y_pos;
-	// new_img(&cub->img, cub->player.y * SCALE_SIZE, cub->player.x * SCALE_SIZE,color, 5 * SCALE_SIZE,
-		// 5 * SCALE_SIZE);
+	new_img(&cub->img, cub->player.y * SCALE_SIZE, cub->player.x * SCALE_SIZE, color, 2,
+		2);
 	draw_line(cub);
 }
