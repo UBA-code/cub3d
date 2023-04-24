@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:11:40 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/23 22:48:14 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:51:16 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,52 +91,6 @@ int	key_check(int keycode, void *cub_ptr)
 	return (1);
 }
 
-
-
-int	key_pressed(int keycode, t_cub3d *cub)
-{
-	if (keycode == UP)
-		cub->player.walk = 1;
-	else if (keycode == DOWN)
-		cub->player.walk = -1;
-	else if (keycode == RIGHT)
-		cub->player.turn = 1;
-	else if (keycode == LEFT)
-		cub->player.turn = -1;
-	else if (keycode == LEFT_ARROW)
-		cub->player.turn = -1;
-	else if (keycode == RIGHT_ARROW)
-		cub->player.turn = 1;
-	else if (keycode == ESC)
-	{
-		mlx_destroy_window(cub->mlx.mlxPtr, cub->mlx.win);
-		ft_exit(cub, 0);
-	}
-	else if (keycode == turn_SPEED_UP)
-		cub->player.turn_speed++;
-	else if (keycode == turn_SPEED_DOWN)
-		cub->player.turn_speed--;
-	if (cub->player.turn_speed < 0)
-		cub->player.turn_speed = 3;
-}
-
-int	release_check(int keycode, t_cub3d *cub)
-{
-
-	if (keycode == UP)
-		cub->player.walk = 0;
-	else if (keycode == DOWN)
-		cub->player.walk = 0;
-	else if (keycode == RIGHT)
-		cub->player.turn = 0;
-	else if (keycode == LEFT)
-		cub->player.turn = 0;
-	else if (keycode == LEFT_ARROW)
-		cub->player.turn = 0;
-	else if (keycode == RIGHT_ARROW)
-		cub->player.turn = 0;
-}
-
 void	draw_2dmap(t_cub3d *cub)
 {
 	int	y;
@@ -157,7 +111,7 @@ void	draw_2dmap(t_cub3d *cub)
 			cub->window_heigth);
 	new_main_img(cub, &cub->map_img, WINDOW_WIDTH, WINDOW_HEIGTH);
 	mlx_hook(cub->mlx.win, 2, 1L << 0, key_check, cub); // 1L << 0 = keypress mask
-	// mlx_hook(cub->mlx.win, 2, 1L << 1, release_check, cub); // 1L << 0 = keyrelease mask
+	// mlx_hook(cub->mlx.win, 17, 1L << 0, ft_exit, cub); // 1L << 0 = keypress mask
 	mlx_loop_hook(cub->mlx.mlxPtr, render_2dmap, cub);
 	mlx_loop(cub->mlx.mlxPtr);
 }

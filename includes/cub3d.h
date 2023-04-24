@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/23 22:40:14 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:09:51 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 #define	ESC		65307
 #define RIGHT_ARROW	65363
 #define LEFT_ARROW	65361
-#define PLAYER_SPEED	1.0
+#define PLAYER_SPEED	20.0
 #define TURN_SPEED		1.0
 #define ANGEL	90.0
 #define ONE_DEGRESS 0.0174533

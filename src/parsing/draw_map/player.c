@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 23:03:12 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/23 22:48:45 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/24 22:58:27 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ void	draw_line(t_cub3d *cub)
 		i = 0;
 		while (i < cub->player.steps && !check_wall(cub, (x), (y)))
 		{
-			if (floor(angel) == floor(cub->player.angel))
-				my_mlx_put_pixel(&cub->img, floor(y) * SCALE_SIZE, floor(x) * SCALE_SIZE, LINE_COLOR);
-			else
-				my_mlx_put_pixel(&cub->img, floor(y) * SCALE_SIZE, round(x) * SCALE_SIZE, LINE_COLOR); // round here because problem of one ray not drawed
+			// if ((angel) == (cub->player.angel))
+				// my_mlx_put_pixel(&cub->img, floor(y) * SCALE_SIZE, floor(x) * SCALE_SIZE, LINE_COLOR);
+			// else
+				// my_mlx_put_pixel(&cub->img, floor(y) * SCALE_SIZE, round(x) * SCALE_SIZE, LINE_COLOR); // round here because problem of one ray not drawed
 			y += cub->player.y_inc;
 			x += cub->player.x_inc;
 			i++;
