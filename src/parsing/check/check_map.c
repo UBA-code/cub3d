@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:42:47 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/13 16:13:24 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/27 19:54:38 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,26 @@ void	get_map_sizes(t_cub3d *cub)
 	cub->map_height = y;
 }
 
+void	get_player_states(t_cub3d *cub)
+{
+	if (cub->p == 'N')
+		cub->player.angel = 90;
+	if (cub->p == 'E')
+		cub->player.angel = 180;
+	if (cub->p == 'S')
+		cub->player.angel = 270;
+	if (cub->p == 'W')
+		cub->player.angel = 0;
+	
+}
+
 int	check_map(char **map, t_cub3d *cub)
 {
-	check_characters(map);
+	check_characters(cub, map);
 	if (!check_surounded(map))
 		return (0);
 	get_map_sizes(cub);
+	get_player_states(cub);
 	return (1);
 }
 

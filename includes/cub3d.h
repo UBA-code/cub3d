@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/24 16:09:51 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/04/27 19:56:17 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@
 #define RIGHT_ARROW	65363
 #define LEFT_ARROW	65361
 #define PLAYER_SPEED	20.0
-#define TURN_SPEED		1.0
-#define ANGEL	90.0
+#define TURN_SPEED		10.0
 #define ONE_DEGRESS 0.0174533
-
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGTH 720
 typedef struct s_info
@@ -80,9 +78,8 @@ typedef struct s_player
 	float		x_inc;
 	float		y_inc;
 	float		angel;
-	char		dir;
-	float			turn_speed;
-	float			walk_speed;
+	float		turn_speed;
+	float		walk_speed;
 	int			turn;
 	int			walk;
 }	t_player;
@@ -102,6 +99,7 @@ typedef struct s_cub3d
 	t_mlx		mlx;
 	t_mlx		map_mlx;
 	t_player	player;
+	char		p;
 }	t_cub3d;
 
 
@@ -117,7 +115,7 @@ char	**dup_tab(char **map);
 int		get_tab_len(char **tab);
 void	tab_free(char **tab);
 void	ft_swap(char *c1, char *c2);
-int		check_characters(char **map);
+int		check_characters(t_cub3d *cub, char **map);
 void	copy_map(char **dst, char *src, int len);
 char	get_player(char **map);
 void	move_back(char *c1, char *c2, char player);
