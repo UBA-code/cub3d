@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/01 15:37:20 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:38:41 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@
 #define	ESC		53
 #define RIGHT_ARROW	124
 #define LEFT_ARROW	123
-#define PLAYER_SPEED	30.0
-#define TURN_SPEED		10.0
+#define PLAYER_SPEED	4
+#define TURN_SPEED		5
 #define ONE_DEGRESS 0.0174533
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGTH 720
@@ -82,6 +82,7 @@ typedef struct s_player
 	float		walk_speed;
 	int			turn;
 	int			walk;
+	int			rotate;
 }	t_player;
 
 typedef struct s_cub3d
@@ -138,6 +139,7 @@ void	new_img(t_my_mlx *data, int y_pos, int x_pos,
 void	init_player(t_cub3d *cub);
 int		check_wall(t_cub3d *cub, float new_x, float new_y);
 int		move_check(int keycode, void *cub_ptr);
+void	move_player(t_cub3d *cub, float x, float y, char c);
 
 // player
 void	init_player(t_cub3d *cub);

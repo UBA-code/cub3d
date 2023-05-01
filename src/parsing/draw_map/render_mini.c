@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:38:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/01 15:38:30 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:37:06 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,27 +77,29 @@ int	render_2dmap(t_cub3d *cub)
 	y_pos = 0;
 	mlx_clear_window(cub->mlx.mlxPtr, cub->mlx.win);   // ! check
 	new_img(&cub->map_img, 0, 0, 0x00000000, WINDOW_HEIGTH, WINDOW_WIDTH);
-	// new_img(&cub->img, 0, 0, 0x00000000, cub->window_heigth,
-			// cub->window_width);
+	new_img(&cub->img, 0, 0, 0x00000000, cub->window_heigth,
+			cub->window_width);
+	cub->player.angel += cub->player.rotate;
+	move_player(cub, cub->player.turn, cub->player.walk, 'c');
 	draw_floor_sky(cub);
-	// while (cub->map[++y])
-	// {
-	// 	x = -1;
-	// 	x_pos = 0;
-	// 	while (cub->map[y][++x])
-	// 	{
-	// 		if (cub->map[y][x] == '1')
-	// 			new_img(&cub->img, y_pos, x_pos, WALL_COLOR, floor(TILE_SIZE * SCALE_SIZE),
-	// 				floor(TILE_SIZE * SCALE_SIZE));
-	// 		else
-	// 			new_img(&cub->img, y_pos, x_pos, FLOOR_COLOR, floor(TILE_SIZE * SCALE_SIZE),
-	// 				floor(TILE_SIZE * SCALE_SIZE));
-	// 		x_pos += floor(TILE_SIZE * SCALE_SIZE) + 1;
-	// 	}
-	// 	y_pos += floor((TILE_SIZE) * SCALE_SIZE) + 1;
-	// }
+	while (cub->map[++y])
+	{
+		x = -1;
+		x_pos = 0;
+		while (cub->map[y][++x])
+		{
+			if (cub->map[y][x] == '1')
+				new_img(&cub->img, y_pos, x_pos, WALL_COLOR, floor(TILE_SIZE * SCALE_SIZE),
+					floor(TILE_SIZE * SCALE_SIZE));
+			else
+				new_img(&cub->img, y_pos, x_pos, FLOOR_COLOR, floor(TILE_SIZE * SCALE_SIZE),
+					floor(TILE_SIZE * SCALE_SIZE));
+			x_pos += floor(TILE_SIZE * SCALE_SIZE) + 1;
+		}
+		y_pos += floor((TILE_SIZE) * SCALE_SIZE) + 1;
+	}
 	draw_player(cub, cub->player.y, cub->player.x, PLAYER_COLOR);
 	mlx_put_image_to_window(cub->mlx.mlxPtr, cub->mlx.win, cub->map_img.img, 0, 0);
-	// mlx_put_image_to_window(cub->mlx.mlxPtr, cub->mlx.win, cub->img.img, 0, 0);
+	mlx_put_image_to_window(cub->mlx.mlxPtr, cub->mlx.win, cub->img.img, 0, 0);
 	return (1);
 }

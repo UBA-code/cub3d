@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:11:40 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/01 15:21:40 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:37:00 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ void	move_player(t_cub3d *cub, float x, float y, char c)
 	int	temp;
 
 	temp = -1;
-	if (c == 'u')
+	if (y == -1)
 		move_player_angel(cub, cub->player.angel, 0, 0);
-	else if (c == 'd')
+	if (y == 1)
 		move_player_angel(cub, cub->player.angel + 180.0, 0, 0);
-	else if (c == 'r')
+	if (x == 1)
 		move_player_angel(cub, cub->player.angel + 90.0, 0, 0);
-	else if (c == 'l')	
+	if (x == -1)	
 		move_player_angel(cub, cub->player.angel - 90.0, 0, 0);
 }
 
@@ -91,6 +91,50 @@ int	key_check(int keycode, void *cub_ptr)
 	return (1);
 }
 
+int key_pressed(int keycode, t_cub3d *cub)
+{
+	if (keycode == UP)
+		cub->player.walk = -1;
+	else if (keycode == DOWN)
+		cub->player.walk = 1;
+	else if (keycode == RIGHT)
+		cub->player.turn = 1;
+	else if (keycode == LEFT)
+		cub->player.turn = -1;
+	else if (keycode == LEFT_ARROW)
+		cub->player.rotate = -1;
+	else if (keycode == RIGHT_ARROW)
+		cub->player.rotate = 1;
+	else if (keycode == ESC)
+	{
+		mlx_destroy_window(cub->mlx.mlxPtr, cub->mlx.win);
+		ft_exit(cub, 0);
+	}
+	return (1);
+}
+
+int key_released(int keycode, t_cub3d *cub)
+{
+	if (keycode == UP)
+		cub->player.walk = 0;
+	else if (keycode == DOWN)
+		cub->player.walk = 0;
+	else if (keycode == RIGHT)
+		cub->player.turn = 0;
+	else if (keycode == LEFT)
+		cub->player.turn = 0;
+	else if (keycode == LEFT_ARROW)
+		cub->player.rotate = 0;
+	else if (keycode == RIGHT_ARROW)
+		cub->player.rotate = 0;
+	else if (keycode == ESC)
+	{
+		mlx_destroy_window(cub->mlx.mlxPtr, cub->mlx.win);
+		ft_exit(cub, 0);
+	}
+	return (1);
+}
+
 void	draw_2dmap(t_cub3d *cub)
 {
 	int	y;
@@ -110,8 +154,9 @@ void	draw_2dmap(t_cub3d *cub)
 	new_main_img(cub, &cub->img, cub->window_width,
 			cub->window_heigth);
 	new_main_img(cub, &cub->map_img, WINDOW_WIDTH, WINDOW_HEIGTH);
-	mlx_hook(cub->mlx.win, 2, 1L << 0, key_check, cub); // 1L << 0 = keypress mask
-	// mlx_hook(cub->mlx.win, 17, 1L << 0, ft_exit, cub); // 1L << 0 = keypress mask
+	mlx_hook(cub->mlx.win, 2, 0L, key_pressed, cub); // 1L << 0 = keypress mask
+	mlx_hook(cub->mlx.win, 3, 0L, key_released, cub); // 1L << 0 = keypress mask
+	mlx_hook(cub->mlx.win, 17, 1L << 0, ft_exit, cub); // 1L << 0 = keypress mask
 	mlx_loop_hook(cub->mlx.mlxPtr, render_2dmap, cub);
 	mlx_loop(cub->mlx.mlxPtr);
 }
