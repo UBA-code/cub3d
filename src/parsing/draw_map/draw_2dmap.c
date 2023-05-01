@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:11:40 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/24 21:51:16 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:21:40 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	move_player(t_cub3d *cub, float x, float y, char c)
 		move_player_angel(cub, cub->player.angel + 180.0, 0, 0);
 	else if (c == 'r')
 		move_player_angel(cub, cub->player.angel + 90.0, 0, 0);
-	else if (c == 'l')
+	else if (c == 'l')	
 		move_player_angel(cub, cub->player.angel - 90.0, 0, 0);
 }
 

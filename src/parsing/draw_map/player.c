@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 23:03:12 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/27 19:53:53 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:38:40 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void	draw_line(t_cub3d *cub)
 		i = 0;
 		while (i < cub->player.steps && !check_wall(cub, (x), (y)))
 		{
-			if ((angel) == (cub->player.angel))
-				my_mlx_put_pixel(&cub->img, floor(y) * SCALE_SIZE, floor(x) * SCALE_SIZE, LINE_COLOR);
+			// if ((angel) == (cub->player.angel))
+				// my_mlx_put_pixel(&cub->img, floor(y) * SCALE_SIZE, floor(x) * SCALE_SIZE, LINE_COLOR);
 			// else
 				// my_mlx_put_pixel(&cub->img, floor(y) * SCALE_SIZE, round(x) * SCALE_SIZE, LINE_COLOR); // round here because problem of one ray not drawed
 			y += cub->player.y_inc;
@@ -122,7 +122,7 @@ void	draw_player(t_cub3d *cub, float y_pos, float x_pos, int color)
 {
 	cub->player.x = x_pos;
 	cub->player.y = y_pos;
-	new_img(&cub->img, cub->player.y * SCALE_SIZE, cub->player.x * SCALE_SIZE, color, 2,
-		2);
+	// new_img(&cub->img, cub->player.y * SCALE_SIZE, cub->player.x * SCALE_SIZE, color, 2,
+		// 2);
 	draw_line(cub);
 }

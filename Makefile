@@ -21,10 +21,10 @@ SRCS = cub3d.c \
 		$(PARSING_PATH)draw_map/player.c
 OBJ = $(SRCS:.c=.o)
 # CFLAGS = -Wall -Werror -Wextra
-CFLAGS += -fsanitize=address -g3
+# CFLAGS += -fsanitize=address -g3
 LIBS = libft
 # MLX = -Iminilibx/
-MLX = -lX11 -lXext -lmlx
+MLX = -lmlx -framework OpenGL -framework AppKit
 NAME = cub3d
 OBJDIR=obj
 
@@ -47,6 +47,7 @@ fclean: clean
 reload:
 	rm -rf $(OBJ)
 	make $(all)
+
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re reload

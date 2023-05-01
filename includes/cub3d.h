@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/27 19:56:17 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:37:20 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@
 #define PI			3.141592653589793238
 #define turn_SPEED_UP		65365
 #define turn_SPEED_DOWN		65366
-#define UP		119
-#define DOWN	115
-#define RIGHT	100
-#define LEFT	97
-#define	ESC		65307
-#define RIGHT_ARROW	65363
-#define LEFT_ARROW	65361
-#define PLAYER_SPEED	20.0
+#define UP		13
+#define DOWN	1
+#define RIGHT	2
+#define LEFT	0
+#define	ESC		53
+#define RIGHT_ARROW	124
+#define LEFT_ARROW	123
+#define PLAYER_SPEED	30.0
 #define TURN_SPEED		10.0
 #define ONE_DEGRESS 0.0174533
 #define WINDOW_WIDTH 1280
