@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:23:44 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/18 16:15:40 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:43:45 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,20 @@ void	get_info_size(t_cub3d *cub)
 		}
 		i++;
 	}
+}
+
+char	*get_info_value(t_cub3d *cub, const char *id)
+{
+	int	i;
+
+	i = 0;
+	while (i < cub->info_size)
+	{
+		if (ft_strcmp(cub->info[i].id, id))
+			return (cub->info[i].content);
+		i++;
+	}
+	return (0);
 }
 
 t_info	*get_infos(t_cub3d *cub)

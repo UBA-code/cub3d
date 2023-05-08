@@ -44,10 +44,11 @@ fclean: clean
 	rm -rf $(NAME)
 	make -C src/libft fclean
 
-reload:
+run:
 	rm -rf $(OBJ)
 	make $(all)
+	./cub3d maps/big.cub
 
 re: fclean all
 
-.PHONY: all clean fclean re reload
+.PHONY: all clean fclean re run

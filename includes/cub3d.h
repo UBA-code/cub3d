@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/01 20:38:41 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/07 21:44:31 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@
 # include "unistd.h"
 # include "../src/libft/libft.h"
 # include "mlx.h"
-// # include "mlx_int.h"
 
-
+#define	NO 0
+#define	EA 1
+#define	SO 2
+#define	WE 3
+#define RED 0x00cc5803
+#define GREEN 0x00e2711d
+#define BLUE 0x00ff9505
+#define YELLOW 0x00ffb627
 #define LINE_COLOR 0x00ff0000
 #define LINE_GREEN_COLOR 0x0000ff00
 #define WALL_COLOR 0x00ffffff
@@ -40,11 +46,25 @@
 #define	ESC		53
 #define RIGHT_ARROW	124
 #define LEFT_ARROW	123
-#define PLAYER_SPEED	4
-#define TURN_SPEED		5
+#define PLAYER_SPEED	20
+#define TURN_SPEED		2
 #define ONE_DEGRESS 0.0174533
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGTH 720
+
+
+typedef struct s_textures
+{
+	int		width;
+	int		heigth;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+	char	*pixel_data;
+	void	*img;
+	int		*addr;
+}	t_textures;
+
 typedef struct s_info
 {
 	char	*id;
@@ -83,6 +103,7 @@ typedef struct s_player
 	int			turn;
 	int			walk;
 	int			rotate;
+	int			direction;
 }	t_player;
 
 typedef struct s_cub3d
@@ -100,6 +121,7 @@ typedef struct s_cub3d
 	t_mlx		mlx;
 	t_mlx		map_mlx;
 	t_player	player;
+	t_textures	*textures;
 	char		p;
 }	t_cub3d;
 
@@ -125,6 +147,7 @@ void	check_colors(t_cub3d *cub);
 void	free_utils(t_cub3d cub);
 void	ft_exit(t_cub3d *cub, int error);
 int		my_abs(int x);
+char	*get_info_value(t_cub3d *cub, const char *id);
 
 
 
