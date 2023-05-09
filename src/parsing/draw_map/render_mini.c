@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:38:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/07 21:19:03 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:44:42 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	new_img(t_my_mlx *data, int y_pos, int x_pos, int color, int hiegth, int wi
 		y++;
 	}
 }
-
 
 void	draw_floor_sky(t_cub3d *cub)
 {
@@ -94,9 +93,9 @@ int	render_2dmap(t_cub3d *cub)
 			else
 				new_img(&cub->img, y_pos, x_pos, FLOOR_COLOR, floor(TILE_SIZE * SCALE_SIZE),
 					floor(TILE_SIZE * SCALE_SIZE));
-			x_pos += floor(TILE_SIZE * SCALE_SIZE) + 1;
+			x_pos += floor(TILE_SIZE * SCALE_SIZE);
 		}
-		y_pos += floor((TILE_SIZE) * SCALE_SIZE) + 1;
+		y_pos += floor((TILE_SIZE) * SCALE_SIZE);
 	}
 	draw_player(cub, cub->player.y, cub->player.x, PLAYER_COLOR);
 	mlx_put_image_to_window(cub->mlx.mlxPtr, cub->mlx.win, cub->map_img.img, 0, 0);

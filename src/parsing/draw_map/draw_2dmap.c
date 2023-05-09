@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:11:40 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/07 21:44:29 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:17:43 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	check_wall(t_cub3d *cub, float new_x, float new_y)
 	int	x_check;
 	int	y;
 
-	x = floor((new_x) / floor(TILE_SIZE + 1 / SCALE_SIZE));
-	x_check = floor((new_x + 1) / floor(TILE_SIZE + 1 / SCALE_SIZE));
-	y = floor((new_y) / floor(TILE_SIZE + 1 / SCALE_SIZE));
+	x = floor((new_x) / TILE_SIZE);
+	x_check = floor((new_x + 1) / TILE_SIZE);
+	y = floor((new_y) / TILE_SIZE);
 	if (cub->map[y][x] == '1' || cub->map[y][x_check] == '1')
 		return (1);
 	return (0);
@@ -37,6 +37,8 @@ void	move_player_angel(t_cub3d *cub, float angel, float y_sin, float x_cos)
 	y = cub->player.y;
 	x = cub->player.x;
 	loop = 0;
+	if (check_wall(cub, x - (TILE_SIZE * x_cos), y - (TILE_SIZE * y_sin)))
+		return ;
 	while (!check_wall(cub, x - (loop * x_cos), y - (loop * y_sin)) && loop < PLAYER_SPEED)
 		loop++;
 	if (!check_wall(cub, x, y))
@@ -105,7 +107,7 @@ void	init_textures(t_cub3d *cub)
 	const char	*dir[] = {"NO", "EA", "SO", "WE"};
 
 	i = 0;
-	cub->textures = ft_calloc(sizeof(t_textures), cub->info_size - 2);
+	cub->textures = ft_calloc(sizeof(t_textures), cub->info_size - 2); // leaks
 	while (i < 4)
 	{
 		cub->textures[i].img = mlx_xpm_file_to_image(cub->mlx.mlxPtr,
@@ -126,28 +128,19 @@ void	draw_2dmap(t_cub3d *cub)
 	y = -1;
 	y_pos = 0;
 	x_pos = 0;
-	cub->window_heigth = cub->map_height * (TILE_SIZE * SCALE_SIZE + 1);
-	cub->window_width = cub->map_width * (TILE_SIZE * SCALE_SIZE + 1);
+	cub->window_heigth = cub->map_height * (TILE_SIZE * SCALE_SIZE);
+	cub->window_width = cub->map_width * (TILE_SIZE * SCALE_SIZE);
 	cub->mlx.mlxPtr = mlx_init();
 	cub->mlx.win = mlx_new_window(cub->mlx.mlxPtr, WINDOW_WIDTH,
 		WINDOW_HEIGTH, "juex hh");
 	init_player(cub);
 	init_textures(cub);
-	// int i = 0;
-	// int xx = 0;
-	// int yy = 0;
-	// while (i < 4)
-	// {
-	// 	mlx_put_image_to_window(cub->mlx.mlxPtr, cub->mlx.win, cub->textures[i].img, xx, yy);
-	// 	xx += cub->textures[i].width;
-	// 	i++;
-	// }
 	new_main_img(cub, &cub->img, cub->window_width,
 			cub->window_heigth);
 	new_main_img(cub, &cub->map_img, WINDOW_WIDTH, WINDOW_HEIGTH);
 	mlx_hook(cub->mlx.win, 2, 0, key_pressed, cub); // 1L << 0 = keypress mask
 	mlx_hook(cub->mlx.win, 3, 0, key_released, cub); // 1L << 0 = keypress mask
-	mlx_hook(cub->mlx.win, 17, 1L << 0, ft_exit, cub); // 1L << 0 = keypress mask
+	// mlx_hook(cub->mlx.win, 17, 1L << 0, ft_exit, cub); // 1L << 0 = keypress mask
 	mlx_loop_hook(cub->mlx.mlxPtr, render_2dmap, cub);
 	mlx_loop(cub->mlx.mlxPtr);
 }

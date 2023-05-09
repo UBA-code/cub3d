@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 23:03:12 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/08 13:44:12 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:39:47 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	init_player(t_cub3d *cub)
 				cub->player.y = y_pos + (TILE_SIZE / 2);
 				return ;
 			}
-			x_pos += TILE_SIZE + 1;
+			x_pos += TILE_SIZE;
 		}
-		y_pos += TILE_SIZE + 1;
+		y_pos += TILE_SIZE;
 	}
 }
 
@@ -72,7 +72,7 @@ void	draw_walls(t_cub3d *cub, float y, float x, float angel, int start_x)
 	temp = start_y;
 	while (++i < wall_len)
 	{
-		int distance = start_y + ((wall_len / 2) - (WINDOW_HEIGTH / 2));
+		int distance = start_y + (wall_len / 2) - (WINDOW_HEIGTH / 2);
 		if (angel == cub->player.angel)
 			my_mlx_put_pixel(&cub->map_img, start_y, start_x, 0x00000000);
 		else
