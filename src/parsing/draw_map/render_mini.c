@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:38:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/09 11:44:42 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/11 12:30:59 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	render_2dmap(t_cub3d *cub)
 
 	y = -1;
 	y_pos = 0;
-	mlx_clear_window(cub->mlx.mlxPtr, cub->mlx.win);   // ! check
+	mlx_clear_window(cub->mlx.mlxPtr, cub->mlx.win);
 	new_img(&cub->map_img, 0, 0, 0x00000000, WINDOW_HEIGTH, WINDOW_WIDTH);
 	new_img(&cub->img, 0, 0, 0x00000000, cub->window_heigth,
 			cub->window_width);

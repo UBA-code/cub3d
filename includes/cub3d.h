@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/11 10:31:29 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:45:06 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@
 #define turn_SPEED_UP		65365
 #define turn_SPEED_DOWN		65366
 #define UP		13
+#define UP_ARROW		126
 #define DOWN	1
+#define DOWN_ARROW	125
 #define RIGHT	2
 #define LEFT	0
 #define	ESC		53
@@ -161,12 +163,11 @@ void	new_img(t_my_mlx *data, int y_pos, int x_pos,
 			int color, int hiegth, int width);
 void	init_player(t_cub3d *cub);
 int		check_wall(t_cub3d *cub, float new_x, float new_y);
-int		move_check(int keycode, void *cub_ptr);
+// int		move_check(int keycode, void *cub_ptr);
 void	move_player(t_cub3d *cub, float x, float y, char c);
 
 // player
 void	init_player(t_cub3d *cub);
 void	draw_line(t_cub3d *cub);
 void	draw_player(t_cub3d *cub, float y_pos, float x_pos, int color);
-
 #endif

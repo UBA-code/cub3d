@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:11:40 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/11 10:27:50 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:51:48 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ void	move_player_angel(t_cub3d *cub, float angel, float y_sin, float x_cos)
 	y = cub->player.y;
 	x = cub->player.x;
 	loop = 0;
+	// if (check_wall(cub,
+		// x - (PLAYER_SPEED * x_cos), y - (PLAYER_SPEED * y_sin)))
+		// return ;
 	while (!check_wall(cub, x - (loop * x_cos), y - (loop * y_sin)) && loop < PLAYER_SPEED)
 		loop++;
 	if (!check_wall(cub, cub->player.x - loop * x_cos, cub->player.y))
@@ -62,9 +65,9 @@ void	move_player(t_cub3d *cub, float x, float y, char c)
 
 int key_pressed(int keycode, t_cub3d *cub)
 {
-	if (keycode == UP)
+	if (keycode == UP || keycode == UP_ARROW)
 		cub->player.walk = -1;
-	else if (keycode == DOWN)
+	else if (keycode == DOWN || keycode == DOWN_ARROW)
 		cub->player.walk = 1;
 	else if (keycode == RIGHT)
 		cub->player.turn = 1;
@@ -84,9 +87,9 @@ int key_pressed(int keycode, t_cub3d *cub)
 
 int key_released(int keycode, t_cub3d *cub)
 {
-	if (keycode == UP)
+	if (keycode == UP || keycode == UP_ARROW)
 		cub->player.walk = 0;
-	else if (keycode == DOWN)
+	else if (keycode == DOWN || keycode == DOWN_ARROW)
 		cub->player.walk = 0;
 	else if (keycode == RIGHT)
 		cub->player.turn = 0;
@@ -110,10 +113,25 @@ void	init_textures(t_cub3d *cub)
 	{
 		cub->textures[i].img = mlx_xpm_file_to_image(cub->mlx.mlxPtr,
 		get_info_value(cub, dir[i]), &cub->textures[i].width, &cub->textures[i].heigth);
+		if (!cub->textures[i].img)
+			return (ft_putstr_fd("\033[0;31minvalid texture\n", 2),
+					ft_exit(cub, 1));
 		cub->textures[i].addr = (int *)mlx_get_data_addr(cub->textures[i].img, &cub->textures[i].bits_per_pixel,
 		&cub->textures[i].size_line, &cub->textures[i].endian);
 		i++;
 	}
+}
+
+int	mouse_move(int x, int y, t_cub3d *cub)
+{
+	if ((y <= WINDOW_HEIGTH && y >= 0) && (x <= WINDOW_WIDTH && x >= 0))
+	{
+		if (x > WINDOW_WIDTH / 2 && x < WINDOW_WIDTH)
+			cub->player.angel += TURN_SPEED;
+		else if (x <= WINDOW_WIDTH / 2 && x > 0)
+			cub->player.angel -= TURN_SPEED;
+	}
+	return (1);
 }
 
 void	draw_2dmap(t_cub3d *cub)
@@ -129,6 +147,8 @@ void	draw_2dmap(t_cub3d *cub)
 	cub->window_heigth = cub->map_height * (TILE_SIZE * SCALE_SIZE);
 	cub->window_width = cub->map_width * (TILE_SIZE * SCALE_SIZE);
 	cub->mlx.mlxPtr = mlx_init();
+	if (!cub->mlx.mlxPtr)
+		return (ft_putstr_fd("\033[0;31mError\n", 2), ft_exit(cub, 1));
 	cub->mlx.win = mlx_new_window(cub->mlx.mlxPtr, WINDOW_WIDTH,
 		WINDOW_HEIGTH, "juex hh");
 	init_player(cub);
@@ -138,6 +158,7 @@ void	draw_2dmap(t_cub3d *cub)
 	new_main_img(cub, &cub->map_img, WINDOW_WIDTH, WINDOW_HEIGTH);
 	mlx_hook(cub->mlx.win, 2, 0, key_pressed, cub); // 1L << 0 = keypress mask
 	mlx_hook(cub->mlx.win, 3, 0, key_released, cub); // 1L << 0 = keypress mask
+	mlx_hook(cub->mlx.win, 6, 0, mouse_move, cub); // 1L << 0 = keypress mask
 	// mlx_hook(cub->mlx.win, 17, 1L << 0, ft_exit, cub); // 1L << 0 = keypress mask
 	mlx_loop_hook(cub->mlx.mlxPtr, render_2dmap, cub);
 	mlx_loop(cub->mlx.mlxPtr);

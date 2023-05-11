@@ -1,7 +1,7 @@
-EA ./maps/test_map.cub
-NO ./maps/test_map.cub
-SO ./maps/test_map.cub
-WE ./maps/test_map.cub
+EA ./textures/EA.xpm
+NO ./textures/NO.xpm
+SO ./textures/SO.xpm
+WE ./textures/WE.xpm
 C 225,30,0
 F 220,100,0
 
