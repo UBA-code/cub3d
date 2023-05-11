@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:11:40 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/09 12:17:43 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:27:50 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,12 @@ void	move_player_angel(t_cub3d *cub, float angel, float y_sin, float x_cos)
 	y = cub->player.y;
 	x = cub->player.x;
 	loop = 0;
-	if (check_wall(cub, x - (TILE_SIZE * x_cos), y - (TILE_SIZE * y_sin)))
-		return ;
 	while (!check_wall(cub, x - (loop * x_cos), y - (loop * y_sin)) && loop < PLAYER_SPEED)
 		loop++;
-	if (!check_wall(cub, x, y))
-		loop--;
-	cub->player.x -= loop * x_cos;
-	cub->player.y -= loop * y_sin;
+	if (!check_wall(cub, cub->player.x - loop * x_cos, cub->player.y))
+		cub->player.x -= loop * x_cos;
+	if (!check_wall(cub, cub->player.x, cub->player.y - loop * y_sin))
+		cub->player.y -= loop * y_sin;
 }
 
 void	move_player(t_cub3d *cub, float x, float y, char c)
