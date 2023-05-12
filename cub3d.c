@@ -6,13 +6,13 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:08:06 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/12 11:00:58 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/12 19:56:50 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/cub3d.h"
 
-void init_cub_struct(t_cub3d *cub)
+void	init_cub_struct(t_cub3d *cub)
 {
 	cub->full_file = 0;
 	cub->info = 0;
@@ -20,9 +20,9 @@ void init_cub_struct(t_cub3d *cub)
 	cub->map = 0;
 }
 
-int check_args(char *file)
+int	check_args(char *file)
 {
-	int fd;
+	int	fd;
 
 	if (!ft_strcmp(ft_strrchr(file, '.'), ".cub"))
 		return (ft_error("check extention of file\n"), 0);
@@ -40,7 +40,7 @@ int check_args(char *file)
 	return (1);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_cub3d cub;
 

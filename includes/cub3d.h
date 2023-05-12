@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/12 12:13:25 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/12 19:55:23 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,38 +21,60 @@
 # include "../src/libft/libft.h"
 # include "mlx.h"
 
-# define	NO 0
-# define	EA 1
-# define	SO 2
-# define	WE 3
-# define RED 0x00cc5803
-# define GREEN 0x00e2711d
-# define BLUE 0x00ff9505
-# define YELLOW 0x00ffb627
-# define LINE_COLOR 0x00ff0000
-# define LINE_GREEN_COLOR 0x0000ff00
-# define WALL_COLOR 0x00ffffff
-# define FLOOR_COLOR 0x0000ffff
-# define PLAYER_COLOR 0x00ff0000
-# define TILE_SIZE	100
-# define SCALE_SIZE 0.07
-# define PI			3.141592653589793238
-# define turn_SPEED_UP		65365
-# define turn_SPEED_DOWN		65366
-# define UP		13
-# define UP_ARROW		126
-# define DOWN	1
-# define DOWN_ARROW	125
-# define RIGHT	2
-# define LEFT	0
-# define	ESC		53
-# define RIGHT_ARROW	124
-# define LEFT_ARROW	123
-# define PLAYER_SPEED	20
-# define TURN_SPEED		2
-# define ONE_DEGRESS 0.0174533
-# define WINDOW_WIDTH 1280
-# define WINDOW_HEIGTH 720
+# define NO 				0
+# define EA 				1
+# define SO 				2
+# define WE 				3
+# define RED 				0x00cc5803
+# define GREEN 				0x00e2711d
+# define BLUE 				0x00ff9505
+# define YELLOW 			0x00ffb627
+# define LINE_COLOR 		0x00ff0000
+# define LINE_GREEN_COLOR	0x0000ff00
+# define WALL_COLOR 		0x00ffffff
+# define FLOOR_COLOR 		0x0000ffff
+# define PLAYER_COLOR 		0x00ff0000
+# define TILE_SIZE			100
+# define SCALE_SIZE 		0.07
+# define PI					3.141592653589793238
+# define UP					13
+# define UP_ARROW			126
+# define DOWN				1
+# define DOWN_ARROW			125
+# define RIGHT				2
+# define LEFT				0
+# define ESC				53
+# define RIGHT_ARROW		124
+# define LEFT_ARROW			123
+# define PLAYER_SPEED		20
+# define TURN_SPEED			2
+# define ONE_DEGRESS 		0.0174533
+# define WINDOW_WIDTH 		1280
+# define WINDOW_HEIGTH 		720
+
+typedef struct s_walls_draw
+{
+	float	dist;
+	float	wall_len;
+	int		start_y;
+	int		text_start_pixel;
+	int		offset_y;
+	float	real_wall_len;
+	int		direction;
+}	t_walls_draw;
+
+typedef struct s_raycast
+{
+	float		y;
+	float		x;
+	float		rad;
+	float		angel;
+	int			rays;
+	float		dist;
+	float		wall_len;
+	int			start_y;
+	int			start_x;
+}	t_raycast;
 
 typedef struct s_textures
 {
@@ -74,7 +96,7 @@ typedef struct s_info
 
 typedef struct s_mlx
 {
-	void	*mlxPtr;
+	void	*mlx_ptr;
 	void	*win;
 }	t_mlx;
 
@@ -100,10 +122,10 @@ typedef struct s_player
 {
 	float		y;
 	float		x;
-	float		dirX;
-	float		dirY;
-	float		difX;
-	float		difY;
+	float		dir_x;
+	float		dir_y;
+	float		dif_x;
+	float		dif_y;
 	float		steps;
 	float		x_inc;
 	float		y_inc;
@@ -135,7 +157,6 @@ typedef struct s_cub3d
 	char		p;
 }	t_cub3d;
 
-
 void	ft_error(char *s);
 t_info	*get_infos(t_cub3d *cub);
 int		check_empty(char *line, char c);
@@ -164,8 +185,6 @@ int		check_characters(t_cub3d *cub, char **map);
 int		check_surounded(char **map);
 void	get_map_sizes(t_cub3d *cub);
 
-
-
 // ?  draw
 
 void	draw_2dmap(t_cub3d *cub);
@@ -181,6 +200,7 @@ int		key_pressed(int keycode, t_cub3d *cub);
 int		key_released(int keycode, t_cub3d *cub);
 int		mouse_move(int x, int y, t_cub3d *cub);
 void	new_obj_img(t_my_mlx *data, int hiegth, int width);
+void	draw_walls(t_cub3d *cub, t_raycast ray);
 
 // player
 void	init_player(t_cub3d *cub);

@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:37:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/13 15:12:13 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/12 19:51:54 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,5 @@ void	ft_error(char *s)
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(s, 2);
 	ft_putstr_fd("\033[0;37m", 2);
-	// free_utils(cub);
 	exit(EXIT_FAILURE);
 }

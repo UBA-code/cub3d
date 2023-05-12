@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:38:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/12 12:01:48 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/12 19:50:03 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,15 @@ void	draw_minimap(t_cub3d *cub)
 
 int	render_2dmap(t_cub3d *cub)
 {
-	mlx_clear_window(cub->mlx.mlxPtr, cub->mlx.win);
+	mlx_clear_window(cub->mlx.mlx_ptr, cub->mlx.win);
 	new_obj_img(&cub->map_img, WINDOW_HEIGTH, WINDOW_WIDTH);
 	cub->player.angel += cub->player.rotate;
 	move_player(cub, cub->player.turn, cub->player.walk, 'c');
 	draw_floor_sky(cub);
 	draw_minimap(cub);
 	raycast(cub);
-	mlx_put_image_to_window(cub->mlx.mlxPtr,
+	mlx_put_image_to_window(cub->mlx.mlx_ptr,
 		cub->mlx.win, cub->map_img.img, 0, 0);
-	mlx_put_image_to_window(cub->mlx.mlxPtr, cub->mlx.win, cub->img.img, 0, 0);
+	mlx_put_image_to_window(cub->mlx.mlx_ptr, cub->mlx.win, cub->img.img, 0, 0);
 	return (1);
 }

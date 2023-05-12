@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:23:44 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/05 14:43:45 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/12 19:52:36 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,6 @@ void	init_struct(char *line, t_info *info)
 		return ;
 	}
 	info->content = ft_substr(line, i, len);
-}
-
-int	get_tab_size(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-		i++;
-	return (i);
 }
 
 int	check_end_infos(char *line)

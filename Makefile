@@ -22,6 +22,7 @@ SRCS = cub3d.c \
 		$(PARSING_PATH)draw_map/events.c \
 		$(PARSING_PATH)draw_map/images.c \
 		$(PARSING_PATH)draw_map/raycast.c \
+		$(PARSING_PATH)draw_map/walls_draw.c \
 		$(PARSING_PATH)draw_map/player.c
 OBJ = $(SRCS:.c=.o)
 # CFLAGS = -Wall -Werror -Wextra

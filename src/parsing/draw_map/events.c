@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 17:57:39 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/11 17:57:51 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:11:57 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	key_pressed(int keycode, t_cub3d *cub)
 		cub->player.rotate = TURN_SPEED;
 	else if (keycode == ESC)
 	{
-		mlx_destroy_window(cub->mlx.mlxPtr, cub->mlx.win);
+		mlx_destroy_window(cub->mlx.mlx_ptr, cub->mlx.win);
 		ft_exit(cub, 0);
 	}
 	return (1);

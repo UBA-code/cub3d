@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:11:40 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/12 11:01:32 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:11:57 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	init_textures(t_cub3d *cub)
 	cub->textures = ft_calloc(sizeof(t_textures), cub->info_size - 2); // leaks
 	while (i < 4)
 	{
-		cub->textures[i].img = mlx_xpm_file_to_image(cub->mlx.mlxPtr,
+		cub->textures[i].img = mlx_xpm_file_to_image(cub->mlx.mlx_ptr,
 				get_info_value(cub, dir[i]),
 				&cub->textures[i].width, &cub->textures[i].height);
 		if (!cub->textures[i].img)
@@ -95,8 +95,8 @@ void	draw_2dmap(t_cub3d *cub)
 	x_pos = 0;
 	cub->window_height = cub->map_height * (TILE_SIZE * SCALE_SIZE);
 	cub->window_width = cub->map_width * (TILE_SIZE * SCALE_SIZE);
-	cub->mlx.mlxPtr = mlx_init();
-	cub->mlx.win = mlx_new_window(cub->mlx.mlxPtr, WINDOW_WIDTH,
+	cub->mlx.mlx_ptr = mlx_init();
+	cub->mlx.win = mlx_new_window(cub->mlx.mlx_ptr, WINDOW_WIDTH,
 			WINDOW_HEIGTH, "juex hh");
 	init_player(cub);
 	init_textures(cub);
@@ -107,6 +107,6 @@ void	draw_2dmap(t_cub3d *cub)
 	mlx_hook(cub->mlx.win, 3, 0, key_released, cub);
 	mlx_hook(cub->mlx.win, 6, 0, mouse_move, cub);
 	// mlx_hook(cub->mlx.win, 17, 1L << 0, ft_exit, cub);
-	mlx_loop_hook(cub->mlx.mlxPtr, render_2dmap, cub);
-	mlx_loop(cub->mlx.mlxPtr);
+	mlx_loop_hook(cub->mlx.mlx_ptr, render_2dmap, cub);
+	mlx_loop(cub->mlx.mlx_ptr);
 }

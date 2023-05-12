@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:28:17 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/13 15:39:29 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/12 19:52:40 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,14 @@ char	**get_full_file(char *file)
 	}
 	close(fd);
 	return (full_file);
+}
+
+int	get_tab_size(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
 }
