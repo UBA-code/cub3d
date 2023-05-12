@@ -12,12 +12,16 @@ SRCS = cub3d.c \
 		$(PARSING_PATH)read_info/get_info.c \
 		$(PARSING_PATH)read_info/get_full_file.c \
 		$(PARSING_PATH)read_info/get_map.c \
+		$(PARSING_PATH)check/check_utils.c \
 		$(PARSING_PATH)check/check_map.c \
 		$(PARSING_PATH)check/check_map_utils.c \
 		$(PARSING_PATH)check/check_info.c \
 		$(PARSING_PATH)check/check_colors.c \
-		$(PARSING_PATH)draw_map/draw_2dmap.c \
-		$(PARSING_PATH)draw_map/render_mini.c \
+		$(PARSING_PATH)draw_map/game.c \
+		$(PARSING_PATH)draw_map/render.c \
+		$(PARSING_PATH)draw_map/events.c \
+		$(PARSING_PATH)draw_map/images.c \
+		$(PARSING_PATH)draw_map/raycast.c \
 		$(PARSING_PATH)draw_map/player.c
 OBJ = $(SRCS:.c=.o)
 # CFLAGS = -Wall -Werror -Wextra

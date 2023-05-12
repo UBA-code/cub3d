@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/11 15:45:06 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:13:25 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,44 +21,43 @@
 # include "../src/libft/libft.h"
 # include "mlx.h"
 
-#define	NO 0
-#define	EA 1
-#define	SO 2
-#define	WE 3
-#define RED 0x00cc5803
-#define GREEN 0x00e2711d
-#define BLUE 0x00ff9505
-#define YELLOW 0x00ffb627
-#define LINE_COLOR 0x00ff0000
-#define LINE_GREEN_COLOR 0x0000ff00
-#define WALL_COLOR 0x00ffffff
-#define FLOOR_COLOR 0x0000ffff
-#define PLAYER_COLOR 0x00ff0000
-#define TILE_SIZE	100
-#define SCALE_SIZE 0.07
-#define PI			3.141592653589793238
-#define turn_SPEED_UP		65365
-#define turn_SPEED_DOWN		65366
-#define UP		13
-#define UP_ARROW		126
-#define DOWN	1
-#define DOWN_ARROW	125
-#define RIGHT	2
-#define LEFT	0
-#define	ESC		53
-#define RIGHT_ARROW	124
-#define LEFT_ARROW	123
-#define PLAYER_SPEED	20
-#define TURN_SPEED		2
-#define ONE_DEGRESS 0.0174533
-#define WINDOW_WIDTH 1280
-#define WINDOW_HEIGTH 720
-
+# define	NO 0
+# define	EA 1
+# define	SO 2
+# define	WE 3
+# define RED 0x00cc5803
+# define GREEN 0x00e2711d
+# define BLUE 0x00ff9505
+# define YELLOW 0x00ffb627
+# define LINE_COLOR 0x00ff0000
+# define LINE_GREEN_COLOR 0x0000ff00
+# define WALL_COLOR 0x00ffffff
+# define FLOOR_COLOR 0x0000ffff
+# define PLAYER_COLOR 0x00ff0000
+# define TILE_SIZE	100
+# define SCALE_SIZE 0.07
+# define PI			3.141592653589793238
+# define turn_SPEED_UP		65365
+# define turn_SPEED_DOWN		65366
+# define UP		13
+# define UP_ARROW		126
+# define DOWN	1
+# define DOWN_ARROW	125
+# define RIGHT	2
+# define LEFT	0
+# define	ESC		53
+# define RIGHT_ARROW	124
+# define LEFT_ARROW	123
+# define PLAYER_SPEED	20
+# define TURN_SPEED		2
+# define ONE_DEGRESS 0.0174533
+# define WINDOW_WIDTH 1280
+# define WINDOW_HEIGTH 720
 
 typedef struct s_textures
 {
 	int		width;
-	int		heigth;
+	int		height;
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
@@ -75,9 +74,9 @@ typedef struct s_info
 
 typedef struct s_mlx
 {
-	void*	mlxPtr;
-	void*	win;
-} t_mlx;
+	void	*mlxPtr;
+	void	*win;
+}	t_mlx;
 
 typedef struct s_my_mlx
 {
@@ -86,7 +85,16 @@ typedef struct s_my_mlx
 	int		endian;
 	char	*pixel_data;
 	void	*img;
-} t_my_mlx;
+	int		width;
+	int		height;
+	int		color;
+}	t_my_mlx;
+
+typedef struct s_obj
+{
+	int	y_pos;
+	int	x_pos;
+}	t_obj;
 
 typedef struct s_player
 {
@@ -118,7 +126,7 @@ typedef struct s_cub3d
 	int			info_size;
 	int			map_height;
 	int			map_width;
-	int			window_heigth;
+	int			window_height;
 	int			window_width;
 	t_mlx		mlx;
 	t_mlx		map_mlx;
@@ -150,6 +158,11 @@ void	free_utils(t_cub3d cub);
 void	ft_exit(t_cub3d *cub, int error);
 int		my_abs(int x);
 char	*get_info_value(t_cub3d *cub, const char *id);
+void	get_player_states(t_cub3d *cub);
+int		check_map(char **map, t_cub3d *cub);
+int		check_characters(t_cub3d *cub, char **map);
+int		check_surounded(char **map);
+void	get_map_sizes(t_cub3d *cub);
 
 
 
@@ -158,16 +171,19 @@ char	*get_info_value(t_cub3d *cub, const char *id);
 void	draw_2dmap(t_cub3d *cub);
 int		render_2dmap(t_cub3d *cub);
 void	my_mlx_put_pixel(t_my_mlx *data, int y, int x, int color);
-void	new_main_img(t_cub3d *cub, t_my_mlx *data, int width, int heigth);
-void	new_img(t_my_mlx *data, int y_pos, int x_pos,
-			int color, int hiegth, int width);
+void	new_main_img(t_cub3d *cub, t_my_mlx *data, int width, int height);
+void	new_img(t_my_mlx *data, t_obj img, int color, int size);
 void	init_player(t_cub3d *cub);
 int		check_wall(t_cub3d *cub, float new_x, float new_y);
 // int		move_check(int keycode, void *cub_ptr);
 void	move_player(t_cub3d *cub, float x, float y, char c);
+int		key_pressed(int keycode, t_cub3d *cub);
+int		key_released(int keycode, t_cub3d *cub);
+int		mouse_move(int x, int y, t_cub3d *cub);
+void	new_obj_img(t_my_mlx *data, int hiegth, int width);
 
 // player
 void	init_player(t_cub3d *cub);
-void	draw_line(t_cub3d *cub);
+void	raycast(t_cub3d *cub);
 void	draw_player(t_cub3d *cub, float y_pos, float x_pos, int color);
 #endif

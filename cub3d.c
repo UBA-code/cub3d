@@ -6,13 +6,13 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:08:06 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/04 20:10:37 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:00:58 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/cub3d.h"
 
-void	init_cub_struct(t_cub3d *cub)
+void init_cub_struct(t_cub3d *cub)
 {
 	cub->full_file = 0;
 	cub->info = 0;
@@ -20,9 +20,9 @@ void	init_cub_struct(t_cub3d *cub)
 	cub->map = 0;
 }
 
-int	check_args(char *file)
+int check_args(char *file)
 {
-	int	fd;
+	int fd;
 
 	if (!ft_strcmp(ft_strrchr(file, '.'), ".cub"))
 		return (ft_error("check extention of file\n"), 0);
@@ -40,9 +40,9 @@ int	check_args(char *file)
 	return (1);
 }
 
-int	main(int ac, char **av)
+int main(int ac, char **av)
 {
-	t_cub3d	cub;
+	t_cub3d cub;
 
 	if (ac != 2 || !check_args(av[1]))
 		return (EXIT_FAILURE);
@@ -67,8 +67,7 @@ int	main(int ac, char **av)
 		printf("%s\n", cub.map[i]);
 		i++;
 	}
-	printf("width: %d, heigth: %d\n", cub.map_width, cub.map_height);
+	printf("width: %d, height: %d\n", cub.map_width, cub.map_height);
 	free_utils(cub);
 	return (0);
 }
-

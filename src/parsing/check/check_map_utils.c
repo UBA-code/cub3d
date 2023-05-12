@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 11:56:01 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/04/27 19:51:42 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:53:19 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	copy_map(char **dst, char *src, int len)
 		x++;
 		i++;
 	}
-	// (*dst)[ft_strlen(*dst) - 1] = '\n';
 }
 
 void	move_back(char *c1, char *c2, char player)

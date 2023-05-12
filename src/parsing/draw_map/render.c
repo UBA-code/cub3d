@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_mini.c                                      :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:38:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/11 12:30:59 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:01:48 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,9 @@ void	my_mlx_put_pixel(t_my_mlx *data, int y, int x, int color)
 {
 	char	*dst;
 
-	dst = data->pixel_data + (y * data->size_line + x * (data->bits_per_pixel / 8));
+	dst = data->pixel_data
+		+ (y * data->size_line + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
-
-void	new_main_img(t_cub3d *cub, t_my_mlx *data, int width, int heigth)
-{
-	int			y;
-	int			x;
-
-	data->img = mlx_new_image(cub->mlx.mlxPtr,
-		width, heigth);
-	data->pixel_data = mlx_get_data_addr(data->img, &(data->bits_per_pixel),
-		&(data->size_line), &(data->endian));
-}
-
-void	new_img(t_my_mlx *data, int y_pos, int x_pos, int color, int hiegth, int width)
-{
-	int			y;
-	int			x;
-
-	y = y_pos;
-	while (y < y_pos + hiegth)
-	{
-		x = x_pos;
-		while (x < x_pos + width)
-		{
-			my_mlx_put_pixel(data, y, x, color);
-			x++;
-		}
-		y++;
-	}
 }
 
 void	draw_floor_sky(t_cub3d *cub)
@@ -65,40 +37,45 @@ void	draw_floor_sky(t_cub3d *cub)
 	}
 }
 
-int	render_2dmap(t_cub3d *cub)
+void	draw_minimap(t_cub3d *cub)
 {
-	int	y;
-	int	y_pos;
-	int	x;
-	int	x_pos;
+	int		y;
+	t_obj	img;
+	int		x;
 
 	y = -1;
-	y_pos = 0;
-	mlx_clear_window(cub->mlx.mlxPtr, cub->mlx.win);
-	new_img(&cub->map_img, 0, 0, 0x00000000, WINDOW_HEIGTH, WINDOW_WIDTH);
-	new_img(&cub->img, 0, 0, 0x00000000, cub->window_heigth,
-			cub->window_width);
-	cub->player.angel += cub->player.rotate;
-	move_player(cub, cub->player.turn, cub->player.walk, 'c');
-	draw_floor_sky(cub);
+	img.y_pos = 0;
+	new_obj_img(&cub->img, cub->window_height, cub->window_width);
 	while (cub->map[++y])
 	{
 		x = -1;
-		x_pos = 0;
+		img.x_pos = 0;
 		while (cub->map[y][++x])
 		{
 			if (cub->map[y][x] == '1')
-				new_img(&cub->img, y_pos, x_pos, WALL_COLOR, floor(TILE_SIZE * SCALE_SIZE),
+				new_img(&cub->img, img, WALL_COLOR,
 					floor(TILE_SIZE * SCALE_SIZE));
 			else
-				new_img(&cub->img, y_pos, x_pos, FLOOR_COLOR, floor(TILE_SIZE * SCALE_SIZE),
+				new_img(&cub->img, img, FLOOR_COLOR,
 					floor(TILE_SIZE * SCALE_SIZE));
-			x_pos += floor(TILE_SIZE * SCALE_SIZE);
+			img.x_pos += floor(TILE_SIZE * SCALE_SIZE);
 		}
-		y_pos += floor((TILE_SIZE) * SCALE_SIZE);
+		img.y_pos += floor((TILE_SIZE) * SCALE_SIZE);
 	}
 	draw_player(cub, cub->player.y, cub->player.x, PLAYER_COLOR);
-	mlx_put_image_to_window(cub->mlx.mlxPtr, cub->mlx.win, cub->map_img.img, 0, 0);
+}
+
+int	render_2dmap(t_cub3d *cub)
+{
+	mlx_clear_window(cub->mlx.mlxPtr, cub->mlx.win);
+	new_obj_img(&cub->map_img, WINDOW_HEIGTH, WINDOW_WIDTH);
+	cub->player.angel += cub->player.rotate;
+	move_player(cub, cub->player.turn, cub->player.walk, 'c');
+	draw_floor_sky(cub);
+	draw_minimap(cub);
+	raycast(cub);
+	mlx_put_image_to_window(cub->mlx.mlxPtr,
+		cub->mlx.win, cub->map_img.img, 0, 0);
 	mlx_put_image_to_window(cub->mlx.mlxPtr, cub->mlx.win, cub->img.img, 0, 0);
 	return (1);
 }
