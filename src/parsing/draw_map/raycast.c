@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 12:17:00 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/12 19:56:20 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/13 13:30:33 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	raycast(t_cub3d *cub)
 
 	obj.angel = cub->player.angel - 30.0;
 	obj.start_x = -1;
-	while (obj.start_x++ < WINDOW_WIDTH)
+	while (++obj.start_x < WINDOW_WIDTH)
 	{
 		obj.rad = obj.angel * (PI / 180.0);
 		cub->player.dir_x = cub->player.x - floor(1000000000 * cos(obj.rad));

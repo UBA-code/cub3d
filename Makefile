@@ -25,7 +25,7 @@ SRCS = cub3d.c \
 		$(PARSING_PATH)draw_map/walls_draw.c \
 		$(PARSING_PATH)draw_map/player.c
 OBJ = $(SRCS:.c=.o)
-# CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 # CFLAGS += -fsanitize=address -g3
 LIBS = libft
 # MLX = -Iminilibx/

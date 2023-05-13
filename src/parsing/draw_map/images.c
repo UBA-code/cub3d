@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 10:39:51 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/12 17:11:57 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/12 21:33:49 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	new_main_img(t_cub3d *cub, t_my_mlx *data, int width, int height)
 {
-	int			y;
-	int			x;
-
 	data->img = mlx_new_image(cub->mlx.mlx_ptr,
 			width, height);
 	data->pixel_data = mlx_get_data_addr(data->img, &(data->bits_per_pixel),

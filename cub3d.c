@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:08:06 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/12 19:56:50 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/13 15:28:27 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	check_args(char *file)
 
 int	main(int ac, char **av)
 {
-	t_cub3d cub;
+	t_cub3d	cub;
 
 	if (ac != 2 || !check_args(av[1]))
 		return (EXIT_FAILURE);
@@ -50,24 +50,10 @@ int	main(int ac, char **av)
 	cub.full_file = get_full_file(av[1]);
 	cub.info = get_infos(&cub);
 	cub.map = get_map(&cub);
-	int i = 0;
 	check_info(cub);
 	check_map(cub.map, &cub);
 	check_colors(&cub);
 	draw_2dmap(&cub);
-	while (i < cub.info_size)
-	{
-		printf("%s", cub.info[i].id);
-		printf("%s\n", cub.info[i].content);
-		i++;
-	}
-	i = 0;
-	while (cub.map[i])
-	{
-		printf("%s\n", cub.map[i]);
-		i++;
-	}
-	printf("width: %d, height: %d\n", cub.map_width, cub.map_height);
 	free_utils(cub);
 	return (0);
 }

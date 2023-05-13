@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:38:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/12 19:50:03 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/13 15:32:41 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	render_2dmap(t_cub3d *cub)
 	mlx_clear_window(cub->mlx.mlx_ptr, cub->mlx.win);
 	new_obj_img(&cub->map_img, WINDOW_HEIGTH, WINDOW_WIDTH);
 	cub->player.angel += cub->player.rotate;
-	move_player(cub, cub->player.turn, cub->player.walk, 'c');
+	move_player(cub, cub->player.turn, cub->player.walk);
 	draw_floor_sky(cub);
 	draw_minimap(cub);
 	raycast(cub);

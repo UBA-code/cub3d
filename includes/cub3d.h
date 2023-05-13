@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/12 19:55:23 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/05/13 15:27:08 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,6 @@ void	tab_free(char **tab);
 void	ft_swap(char *c1, char *c2);
 int		check_characters(t_cub3d *cub, char **map);
 void	copy_map(char **dst, char *src, int len);
-char	get_player(char **map);
 void	move_back(char *c1, char *c2, char player);
 void	check_info(t_cub3d cub);
 void	check_colors(t_cub3d *cub);
@@ -184,8 +183,9 @@ int		check_map(char **map, t_cub3d *cub);
 int		check_characters(t_cub3d *cub, char **map);
 int		check_surounded(char **map);
 void	get_map_sizes(t_cub3d *cub);
+int		exit_btn(t_cub3d *cub);
 
-// ?  draw
+//?  draw
 
 void	draw_2dmap(t_cub3d *cub);
 int		render_2dmap(t_cub3d *cub);
@@ -194,15 +194,14 @@ void	new_main_img(t_cub3d *cub, t_my_mlx *data, int width, int height);
 void	new_img(t_my_mlx *data, t_obj img, int color, int size);
 void	init_player(t_cub3d *cub);
 int		check_wall(t_cub3d *cub, float new_x, float new_y);
-// int		move_check(int keycode, void *cub_ptr);
-void	move_player(t_cub3d *cub, float x, float y, char c);
+void	move_player(t_cub3d *cub, float x, float y);
 int		key_pressed(int keycode, t_cub3d *cub);
 int		key_released(int keycode, t_cub3d *cub);
 int		mouse_move(int x, int y, t_cub3d *cub);
 void	new_obj_img(t_my_mlx *data, int hiegth, int width);
 void	draw_walls(t_cub3d *cub, t_raycast ray);
 
-// player
+//? player
 void	init_player(t_cub3d *cub);
 void	raycast(t_cub3d *cub);
 void	draw_player(t_cub3d *cub, float y_pos, float x_pos, int color);
