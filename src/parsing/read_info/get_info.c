@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:23:44 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/12 19:52:36 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/03 18:08:39 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ char	*get_info_value(t_cub3d *cub, const char *id)
 
 t_info	*get_infos(t_cub3d *cub)
 {
-	int		i;
 	t_info	*info;
+	int		i;
 	int		x;
 
 	x = 0;

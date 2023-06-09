@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/13 15:27:08 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/09 12:35:30 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "math.h"
+# include "stdbool.h"
 # include "stdlib.h"
 # include "stdio.h"
 # include "fcntl.h"
@@ -51,6 +52,8 @@
 # define ONE_DEGRESS 		0.0174533
 # define WINDOW_WIDTH 		1280
 # define WINDOW_HEIGTH 		720
+# define ID					1
+# define CONTENT			0
 
 typedef struct s_walls_draw
 {
@@ -146,6 +149,7 @@ typedef struct s_cub3d
 	t_info		*info;
 	char		**map;
 	int			info_size;
+	int			lines;
 	int			map_height;
 	int			map_width;
 	int			window_height;
@@ -157,6 +161,17 @@ typedef struct s_cub3d
 	char		p;
 }	t_cub3d;
 
+void	printing(char** s);
+int		ft_is_space(int c);
+int		check_args(t_cub3d *cub, int ac, char *file);
+void	init_cub(t_cub3d *cub, char* file);
+// t_info	*infos(t_cub3d *cub);
+char	**alloc_file(t_cub3d *cub, int fd);
+char	*valide_id(char *id);
+void	init_infos(t_cub3d *cub);
+char	*parse_info(char *file, int flag);
+
+///////////////////////////////////////// 
 void	ft_error(char *s);
 t_info	*get_infos(t_cub3d *cub);
 int		check_empty(char *line, char c);
