@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:46:24 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/01 15:17:06 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/12 00:29:12 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -55,11 +56,14 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+void	ft_error(char *s);
+
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);

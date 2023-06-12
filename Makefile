@@ -1,7 +1,6 @@
 PARSING_PATH= ./src/parsing/
 EXECUTION_PATH= ./src/execution/
 SRCS = cub3d.c \
-		$(PARSING_PATH)utils/ft_error.c \
 		$(PARSING_PATH)utils/utils.c \
 		$(PARSING_PATH)utils/ft_swap.c \
 		$(PARSING_PATH)utils/dup_tab.c \
@@ -23,7 +22,11 @@ SRCS = cub3d.c \
 		$(PARSING_PATH)draw_map/images.c \
 		$(PARSING_PATH)draw_map/raycast.c \
 		$(PARSING_PATH)draw_map/walls_draw.c \
-		$(PARSING_PATH)draw_map/player.c
+		$(PARSING_PATH)draw_map/player.c \
+		./src/init/infos.c \
+		./src/init/init.c \
+		./src/init/ft_split_set.c \
+
 OBJ = $(SRCS:.c=.o)
 CFLAGS = -Wall -Werror -Wextra
 CFLAGS += -fsanitize=address -g3

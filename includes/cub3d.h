@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/09 12:35:30 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/12 15:13:04 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@
 # define WINDOW_HEIGTH 		720
 # define ID					1
 # define CONTENT			0
+# define TEXTURE			1
+# define COLOR				2
 
 typedef struct s_walls_draw
 {
@@ -163,16 +165,17 @@ typedef struct s_cub3d
 
 void	printing(char** s);
 int		ft_is_space(int c);
+void	ft_error(char *s);
+char	**ft_split_set(char const *s, char *set, int *len);
 int		check_args(t_cub3d *cub, int ac, char *file);
 void	init_cub(t_cub3d *cub, char* file);
-// t_info	*infos(t_cub3d *cub);
 char	**alloc_file(t_cub3d *cub, int fd);
 char	*valide_id(char *id);
 void	init_infos(t_cub3d *cub);
-char	*parse_info(char *file, int flag);
+void	parse_info(t_info *inf, char *file, int i);
+void	parse_map(t_cub3d *cub, int i);
 
 ///////////////////////////////////////// 
-void	ft_error(char *s);
 t_info	*get_infos(t_cub3d *cub);
 int		check_empty(char *line, char c);
 char	**get_full_file(char *file);

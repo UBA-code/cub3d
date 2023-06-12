@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split_set.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 20:25:07 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/12 00:27:22 by bahbibe          ###   ########.fr       */
+/*   Created: 2023/06/12 00:23:01 by bahbibe           #+#    #+#             */
+/*   Updated: 2023/06/12 13:01:35 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/cub3d.h"
 
-static int	ft_word(char *str, char c)
+static int	in_set(char c, char *set)
+{
+	int	i;
+
+	i = 0;
+	while (set[i])
+	{
+		if (set[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static int	ft_word(char *str, char *set)
 {
 	int	len;
 	int	word;
@@ -25,7 +39,7 @@ static int	ft_word(char *str, char c)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == c)
+		if (in_set(str[i], set))
 			word = 1;
 		else
 		{
@@ -38,7 +52,7 @@ static int	ft_word(char *str, char c)
 	return (count);
 }
 
-static char	*ft_worddup(char *str, char c, int *index)
+static char	*ft_worddup(char *str, char *set, int *index)
 {
 	char	*ptr;
 	int		count;
@@ -47,10 +61,10 @@ static char	*ft_worddup(char *str, char c, int *index)
 
 	count = 0;
 	i = 0;
-	while (str[*index] == c && str[*index])
+	while (in_set(str[*index], set) && str[*index])
 		(*index)++;
 	pos = *index;
-	while (str[*index] != c && str[*index])
+	while (!in_set(str[*index], set) && str[*index])
 	{
 		count++;
 		(*index)++;
@@ -70,7 +84,7 @@ static char	**ft_free(char **ptr, int i)
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split_set(char const *s, char *set, int *len)
 {
 	char	**ptr;
 	int		count;
@@ -81,17 +95,19 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	if (!s)
 		return (NULL);
-	count = ft_word((char *)s, c);
+	count = ft_word((char *)s, set);
 	ptr = malloc(sizeof(char *) * (count + 1));
 	if (!ptr)
 		return (NULL);
 	while (i < count)
 	{
-		ptr[i] = ft_worddup((char *)s, c, &index);
+		ptr[i] = ft_worddup((char *)s, set, &index);
 		if (!ptr[i])
 			return (ft_free(ptr, i));
 		i++;
 	}
 	ptr[i] = 0;
+	if (len)
+		*len = i;
 	return (ptr);
 }

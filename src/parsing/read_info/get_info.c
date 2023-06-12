@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:23:44 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/03 18:08:39 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/12 15:49:24 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*get_info_value(t_cub3d *cub, const char *id)
 	int	i;
 
 	i = 0;
-	while (i < cub->info_size)
+	while (i < 6)
 	{
 		if (ft_strcmp(cub->info[i].id, id))
 			return (cub->info[i].content);

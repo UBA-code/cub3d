@@ -3,77 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 20:43:28 by ybel-hac          #+#    #+#             */
-/*   Updated: 2022/10/31 01:21:43 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/12 12:32:39 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	calc_skip(const char *s, int *i, int *sign_len, int *sign)
+void	ft_error(char *s)
 {
-	*sign = 1;
-	while ((s[*i] >= 9 && s[*i] <= 13) || s[*i] == ' ')
-		++*i;
-	while (s[*i] == '-' || s[*i] == '+')
-	{
-		if (s[*i] == '-')
-		{
-			*sign = -1;
-			++*sign_len;
-		}
-		else if (s[*i] == '+')
-		{
-			*sign = 1;
-			++*sign_len;
-		}
-		++*i;
-	}
+	ft_putstr_fd("\033[0;31m", 2);
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(s, 2);
+	ft_putstr_fd("\033[0;37m", 2);
+	exit(EXIT_FAILURE);
 }
 
-static int	get_len(const char *str, int *i)
-{
-	int	len;
-	int	x;
-
-	x = *i;
-	len = 0;
-	while (str[x] == '0')
-		x++;
-	while (str[x] >= '0' && str[x] <= '9')
-	{
-		len++;
-		x++;
-	}
-	return (len);
+int	ft_is_space(int c)
+{	
+	return (c == '\f' || c == '\n' || c == '\r' \
+	|| c == '\t' || c == '\v' || c == ' ');
 }
 
 int	ft_atoi(const char *str)
 {
-	size_t	num;
-	int		sign_len;
-	int		sign;
 	int		i;
-	int		num_len;
+	int		sign;
+	long	res;
 
 	i = 0;
-	sign_len = 1;
-	num = 0;
-	calc_skip(str, &i, &sign_len, &sign);
-	num_len = get_len(str, &i);
-	while (str[i] >= '0' && str[i] <= '9')
+	res = 0;
+	sign = 1;
+	while (ft_is_space((int)str[i]))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (sign == -1 && sign_len <= 2 && num_len >= 20)
-			return (0);
-		else if (sign == 1 && sign_len <= 2 && num_len >= 20)
-			return (-1);
-		num *= 10;
-		num += str[i] - '0';
+		if (str[i] == '-')
+			sign *= -1;
 		i++;
 	}
-	if (sign_len > 2)
-		return (0);
-	return (num * sign);
+	while (ft_isdigit(str[i]))
+	{
+		res = res * 10 +(str[i] - 48);
+		i++;
+		if ((res * -1 < (long)INT_MIN) || (res > (long)INT_MAX && sign == 1))
+			return (-1);
+	}
+	return ((int)res * sign);
 }
