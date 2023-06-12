@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:11:40 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/12 15:49:54 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/12 17:07:48 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	init_textures(t_cub3d *cub)
 
 void	draw_2dmap(t_cub3d *cub)
 {
+	cub->p = 'N'; // ! need player character
 	int	y_pos;
 	int	x_pos;
 

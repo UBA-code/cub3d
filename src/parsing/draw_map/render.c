@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:38:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/13 15:32:41 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:58:11 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_floor_sky(t_cub3d *cub)
 	{
 		x = -1;
 		while (y < WINDOW_HEIGTH / 2 && ++x < WINDOW_WIDTH)
-			my_mlx_put_pixel(&cub->map_img, y, x, 0x000099ff);
+			my_mlx_put_pixel(&cub->map_img, y, x, 25 << 16 | 0 << 8 | 51 << 0);
 		while (y > WINDOW_HEIGTH / 2 && ++x < WINDOW_WIDTH)
 			my_mlx_put_pixel(&cub->map_img, y, x, 0x00669999);
 	}

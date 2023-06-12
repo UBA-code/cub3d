@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   infos.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:05:26 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/12 15:15:35 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/12 17:06:22 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	init_infos(t_cub3d *cub)
 			if (ft_strcmp(cub->info[j].id, cub->info[x].id))
 				ft_error("Duplicate infos\n");
 	}
-	parse_map(cub, --i);
+	parse_map(cub, i);
 }
 
 void	parse_map(t_cub3d *cub, int i)
@@ -110,11 +110,15 @@ void	parse_map(t_cub3d *cub, int i)
 	int j;
 
 	j = -1;
-	while (cub->full_file[++i])
+	cub->map_width = 0;
+	while (cub->full_file[i])
 	{
+		if (ft_strlen(cub->full_file[i]) > (size_t)cub->map_width)
+			cub->map_width = ft_strlen(cub->full_file[i]);
 		cub->map[++j] = ft_substr(cub->full_file[i], 0,
-			ft_strchr_index(cub->full_file[i], '\n') - 1);
+			ft_strchr_index(cub->full_file[i], '\n'));
+		i++;
 	}
-	cub->map[j] = NULL;
-	// printing(cub->map);
+	cub->map_height = i;
+	check_map(cub->map, cub);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:08:06 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/12 15:50:05 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/12 16:18:16 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int ac, char **av)
 	// check_map(cub.map, &cub);
 	// check_colors(&cub);
 	draw_2dmap(&cub);
+	// printing(cub.map);
 	// free_utils(cub);
 	// while (1);
 	return (0);

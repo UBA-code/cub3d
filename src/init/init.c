@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:51:23 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/12 15:17:23 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/12 16:14:35 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**alloc_file(t_cub3d *cub, int fd)
 	}
 	free(line);
 	cub->full_file = malloc(sizeof(char *) * (cub->lines + 1));
-	cub->map = malloc(sizeof(char *) * (cub->lines - 5));
+	cub->map = ft_calloc(sizeof(char *), (cub->lines - 5));
 	if (!cub->full_file || !cub->map)
 		return (close(fd), NULL);
 	return (close(fd), cub->full_file);
