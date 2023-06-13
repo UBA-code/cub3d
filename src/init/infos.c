@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   infos.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:05:26 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/12 17:06:22 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/13 17:00:54 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	valide_color(char *rgb)
 			return (0);
 		else if (rgb[i] == ',')
 			count++;
+		else if (rgb[i] != ',' && !ft_isdigit(rgb[i]))
+			return (0);
 	}
 	split = ft_split_set(rgb, " ,\t\n", &len);
 	if (len != 3)
@@ -77,7 +79,7 @@ void	parse_info( t_info *inf, char *file, int i)
 
 	while (ft_is_space(*file))
 		file++;
-	id = ft_substr(file, 0, ft_strchr_index(file, ' '));
+	id = ft_substr(file, 0, ft_strchr_index(file, " \t"));
 	content = ft_substr(file + ft_strlen(id), 0, ft_strlen(file));
 	inf[i].id = valide_id(id);
 	inf[i].content = valide_content(content, inf[i].id);
@@ -116,7 +118,7 @@ void	parse_map(t_cub3d *cub, int i)
 		if (ft_strlen(cub->full_file[i]) > (size_t)cub->map_width)
 			cub->map_width = ft_strlen(cub->full_file[i]);
 		cub->map[++j] = ft_substr(cub->full_file[i], 0,
-			ft_strchr_index(cub->full_file[i], '\n'));
+			ft_strchr_index(cub->full_file[i], "\n"));
 		i++;
 	}
 	cub->map_height = i;

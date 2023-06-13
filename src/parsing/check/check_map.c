@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:42:47 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/11 17:54:19 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:54:22 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	get_player_position(char **map, int *y, int *x, char c)
 	*x = 0;
 	while (map[*y])
 	{
-		temp = ft_strchr_index(map[*y], c);
+		temp = ft_strchr_index(map[*y], &c);
 		if (temp != -1)
 		{
 			*x = temp;

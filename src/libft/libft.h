@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:46:24 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/12 00:29:12 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/13 16:53:58 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_isascii(int c);
 char	*ft_strchr(const char *s, int c);
-int		ft_strchr_index(const char *s, int c);
+int		ft_strchr_index(const char *s, char *c);
 char	*ft_strrchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
 int		ft_atoi(const char *str);

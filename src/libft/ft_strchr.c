@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:40:11 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/12 19:53:53 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:59:57 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,20 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
-int	ft_strchr_index(const char *s, int c)
+int	ft_strchr_index(const char *s, char *c)
 {
 	int		i;
+	int		j;
 	char	*str;
 
 	str = (char *) s;
 	i = 0;
 	while (str[i])
 	{
-		if (s[i] == (char)c)
-			return (i);
+		j = -1;
+		while (c[++j])
+			if (s[i] == c[j])
+				return (i);
 		i++;
 	}
 	return (-1);
