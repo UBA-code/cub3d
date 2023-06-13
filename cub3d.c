@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:08:06 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/12 16:18:16 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/13 17:56:40 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(int ac, char **av)
 	if (!check_args(&cub, ac, av[1]))
 		exit(EXIT_FAILURE);
 	init_cub(&cub, av[1]);
-	// printing(cub.full_file);
 	
 	// cub.info = get_infos();
 	// cub.map = get_map(&cub);

@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:42:47 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/13 16:54:22 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/13 18:00:24 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,17 +91,4 @@ int	check_surounded(char **map)
 	return (1);
 }
 
-void	get_map_sizes(t_cub3d *cub)
-{
-	int	y;
 
-	y = 0;
-	cub->map_width = 0;
-	while (cub->map[y])
-	{
-		if ((int)ft_strlen(cub->map[y]) > cub->map_width)
-			cub->map_width = ft_strlen(cub->map[y]);
-		y++;
-	}
-	cub->map_height = y;
-}

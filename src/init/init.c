@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:51:23 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/12 16:14:35 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/13 17:54:56 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ char	**alloc_file(t_cub3d *cub, int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (line[0] != '\n')
-			cub->lines++;
+		cub->lines++;
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -64,14 +63,31 @@ void	init_cub(t_cub3d *cub, char *file)
 	line = get_next_line(fd);
 	while (line)
 	{
+		if (!is_info(line))
+			break;
 		if (line[0] != '\n')
 			cub->full_file[i++] = ft_strdup(line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	while (line)
+	{
+		cub->full_file[i++] = ft_strdup(line);
 		free(line);
 		line = get_next_line(fd);
 	}
 	cub->full_file[i] = NULL;
 	close(fd);
 	cub->info_size = 6;
+	// printing(cub->full_file);
 	init_infos(cub);
 }
 
+int is_info(char *line)
+{
+	if (!ft_strncmp(line, "EA", 2) || !ft_strncmp(line, "NO", 2)
+		|| !ft_strncmp(line, "SO", 2) || !ft_strncmp(line, "WE", 2)
+		|| !ft_strncmp(line, "F", 1) || !ft_strncmp(line, "C", 1))
+		return (1);
+	return (0);
+}

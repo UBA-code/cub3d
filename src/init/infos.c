@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:05:26 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/13 17:00:54 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/13 17:56:28 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*valide_id(char *id)
 	return (NULL);
 }
 
-int	valide_color(char *rgb)
+int	valide_color(char *rgb, int *color)
 {
 	char	**split;
 	int		count;
@@ -46,11 +46,12 @@ int	valide_color(char *rgb)
 	while (--len >= 0)
 		if (ft_atoi(split[len]) < 0 || ft_atoi(split[len]) > 255)
 			ft_error("Invalid color\n");
+	*color = ft_atoi(split[0]) << 16 | ft_atoi(split[1]) << 8 | ft_atoi(split[2]) << 0;
 	tab_free(split);
 	return (count);
 }
 
-char	*valide_content( char *content, char *id)
+char	*valide_content(t_cub3d *cub, char *content, char *id)
 {
 	int		fd;
 	char	*file;
@@ -60,7 +61,9 @@ char	*valide_content( char *content, char *id)
 	free(content);
 	if (*id == 'F' || *id == 'C')
 	{
-		if (valide_color(file) != 2)
+		if (*id == 'F' && valide_color( file, &cub->floor) != 2)
+			ft_error("Invalid color\n");
+		else if (*id == 'C' && valide_color( file, &cub->ceil) != 2)
 			ft_error("Invalid color\n");
 	}
 	else
@@ -72,7 +75,7 @@ char	*valide_content( char *content, char *id)
 	return (close(fd), file);
 }
 
-void	parse_info( t_info *inf, char *file, int i)
+void	parse_info(t_cub3d *cub, t_info *inf, char *file, int i)
 {
 	char	*id;
 	char	*content;
@@ -82,7 +85,7 @@ void	parse_info( t_info *inf, char *file, int i)
 	id = ft_substr(file, 0, ft_strchr_index(file, " \t"));
 	content = ft_substr(file + ft_strlen(id), 0, ft_strlen(file));
 	inf[i].id = valide_id(id);
-	inf[i].content = valide_content(content, inf[i].id);
+	inf[i].content = valide_content(cub, content, inf[i].id);
 }	
 
 void	init_infos(t_cub3d *cub)
@@ -95,7 +98,7 @@ void	init_infos(t_cub3d *cub)
 	x = 0;
 	cub->info = ft_calloc(sizeof(t_info), 6);
 	while (++i < 6)
-		parse_info(cub->info, cub->full_file[i], i);
+		parse_info(cub, cub->info, cub->full_file[i], i);
 	j = -1;
 	while (++j < 6)
 	{
@@ -122,5 +125,6 @@ void	parse_map(t_cub3d *cub, int i)
 		i++;
 	}
 	cub->map_height = i;
+	printing(cub->map);
 	check_map(cub->map, cub);
 }

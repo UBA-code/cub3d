@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:38:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/12 16:58:11 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/13 17:22:14 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	draw_floor_sky(t_cub3d *cub)
 	{
 		x = -1;
 		while (y < WINDOW_HEIGTH / 2 && ++x < WINDOW_WIDTH)
-			my_mlx_put_pixel(&cub->map_img, y, x, 25 << 16 | 0 << 8 | 51 << 0);
+			my_mlx_put_pixel(&cub->map_img, y, x, cub->ceil);
 		while (y > WINDOW_HEIGTH / 2 && ++x < WINDOW_WIDTH)
-			my_mlx_put_pixel(&cub->map_img, y, x, 0x00669999);
+			my_mlx_put_pixel(&cub->map_img, y, x, cub->floor);
 	}
 }
 

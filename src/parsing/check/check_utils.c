@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 17:54:07 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/11 17:54:23 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/13 18:00:17 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int	check_map(char **map, t_cub3d *cub)
 	if (!check_surounded(map))
 		return (0);
 	get_map_sizes(cub);
-	get_player_states(cub);
+	get_player_states(cub);	 // ! keep it here
 	return (1);
 }

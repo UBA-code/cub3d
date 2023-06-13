@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/13 16:58:05 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/13 17:52:41 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,8 @@ typedef struct s_cub3d
 	t_player	player;
 	t_textures	*textures;
 	char		p;
+	int			ceil;
+	int			floor;
 }	t_cub3d;
 
 void	printing(char** s);
@@ -172,8 +174,9 @@ void	init_cub(t_cub3d *cub, char* file);
 char	**alloc_file(t_cub3d *cub, int fd);
 char	*valide_id(char *id);
 void	init_infos(t_cub3d *cub);
-void	parse_info(t_info *inf, char *file, int i);
+void	parse_info(t_cub3d *cub, t_info *inf, char *file, int i);
 void	parse_map(t_cub3d *cub, int i);
+int		is_info(char *line);
 
 ///////////////////////////////////////// 
 t_info	*get_infos(t_cub3d *cub);
