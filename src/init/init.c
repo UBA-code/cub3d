@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:51:23 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/14 17:37:42 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/14 18:29:40 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,21 +102,8 @@ char *dup_line(char *src, int len)
 	i = 1;
 	j = -1;
 	while (src && src[++j])
-	{
 		if (in_set(src[j], "01"))
-			dst[i] = src[j];
-		i++;
-	}
-	// dst[len] = 0;
-	// if(src)
-	// {
-	// 	while (++i < len)
-	// 	{
-	// 		if (is_set(src[i], " \t"))
-	// 			dst[i] = src[i];
-	// 	}
-	// 	free(src);
-	// }
+			dst[++i] = src[j];
 	return(dst);
 }
 
@@ -125,17 +112,12 @@ char **dup_map(t_cub3d *cub)
 	char **dup;
 	int i;
 
-	i = -1 ;
 	dup = ft_calloc(sizeof(char *) , cub->map_height + 3);
-	// dup[0] = dup_line(cub->map[0], cub->map_width + 3);
-	while (++i < cub->map_height + 3)
-	{
-		if (i == 0 || i == cub->map_height + 2)
-			dup[i] = dup_line(NULL, cub->map_width + 3);
-		else if (i < cub->map_height)
-			dup[i] = dup_line(cub->map[i], cub->map_width + 3);
-		printf("%s\n", dup[i]);
-	}
+	dup[0] = dup_line(NULL, cub->map_width + 3);
+	i = 0;
+	while (++i < cub->map_height)
+		dup[i] = dup_line(cub->map[i - 1], cub->map_width + 3);
+	dup[i - 1] = dup_line(NULL, cub->map_width + 3);
 	return(dup);
 }
 
@@ -145,7 +127,7 @@ int	is_closed(t_cub3d *cub)
 	char **dup;
 
 	dup = dup_map(cub);
-	// printing(dup);
+	printing(dup);
 	return 0;
 }
 
