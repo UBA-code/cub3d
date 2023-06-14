@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:51:23 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/13 17:54:56 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/14 17:37:42 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**alloc_file(t_cub3d *cub, int fd)
 		line = get_next_line(fd);
 	}
 	free(line);
-	cub->full_file = malloc(sizeof(char *) * (cub->lines + 1));
+	cub->full_file = ft_calloc(sizeof(char *), cub->lines + 1);
 	cub->map = ft_calloc(sizeof(char *), (cub->lines - 5));
 	if (!cub->full_file || !cub->map)
 		return (close(fd), NULL);
@@ -76,10 +76,7 @@ void	init_cub(t_cub3d *cub, char *file)
 		free(line);
 		line = get_next_line(fd);
 	}
-	cub->full_file[i] = NULL;
 	close(fd);
-	cub->info_size = 6;
-	// printing(cub->full_file);
 	init_infos(cub);
 }
 
@@ -90,4 +87,76 @@ int is_info(char *line)
 		|| !ft_strncmp(line, "F", 1) || !ft_strncmp(line, "C", 1))
 		return (1);
 	return (0);
+}
+
+char *dup_line(char *src, int len)
+{
+	char *dst;
+	int i ;
+	int j ;
+
+	i  = -1;
+	dst = ft_calloc(sizeof(char), len);
+	while (++i < len - 1)
+		dst[i] = 'x';
+	i = 1;
+	j = -1;
+	while (src && src[++j])
+	{
+		if (in_set(src[j], "01"))
+			dst[i] = src[j];
+		i++;
+	}
+	// dst[len] = 0;
+	// if(src)
+	// {
+	// 	while (++i < len)
+	// 	{
+	// 		if (is_set(src[i], " \t"))
+	// 			dst[i] = src[i];
+	// 	}
+	// 	free(src);
+	// }
+	return(dst);
+}
+
+char **dup_map(t_cub3d *cub)
+{
+	char **dup;
+	int i;
+
+	i = -1 ;
+	dup = ft_calloc(sizeof(char *) , cub->map_height + 3);
+	// dup[0] = dup_line(cub->map[0], cub->map_width + 3);
+	while (++i < cub->map_height + 3)
+	{
+		if (i == 0 || i == cub->map_height + 2)
+			dup[i] = dup_line(NULL, cub->map_width + 3);
+		else if (i < cub->map_height)
+			dup[i] = dup_line(cub->map[i], cub->map_width + 3);
+		printf("%s\n", dup[i]);
+	}
+	return(dup);
+}
+
+
+int	is_closed(t_cub3d *cub)
+{
+	char **dup;
+
+	dup = dup_map(cub);
+	// printing(dup);
+	return 0;
+}
+
+int	check_map(char **map, t_cub3d *cub)
+{
+	(void) map;
+	is_closed(cub);
+	// check_characters(cub, map);
+	// if (!check_surounded(map))
+	// 	return (0);
+	// // get_map_sizes(cub);
+	// get_player_states(cub);	 // ! keep it here
+	return (1);
 }

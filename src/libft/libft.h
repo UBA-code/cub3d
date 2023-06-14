@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:46:24 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/13 16:53:58 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/14 13:22:25 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	ft_bzero(void *s, size_t n);
+void	ft_x(void *s, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);

@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_utils.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 17:54:07 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/13 22:37:25 by bahbibe          ###   ########.fr       */
+/*   Created: 2023/06/13 22:08:45 by bahbibe           #+#    #+#             */
+/*   Updated: 2023/06/14 11:47:49 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-void	get_player_states(t_cub3d *cub)
+int	in_set(char c, char *set)
 {
-	if (cub->p == 'N')
-		cub->player.angel = 90;
-	if (cub->p == 'E')
-		cub->player.angel = 180;
-	if (cub->p == 'S')
-		cub->player.angel = 270;
-	if (cub->p == 'W')
-		cub->player.angel = 0;
+	int	i;
+
+	i = 0;
+	while (set[i])
+	{
+		if (set[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
-
+int get_height(char **s)
+{
+	int	i;
+	
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}

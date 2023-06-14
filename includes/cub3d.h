@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/13 17:52:41 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/14 11:39:50 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,8 @@ typedef struct s_cub3d
 }	t_cub3d;
 
 void	printing(char** s);
+int		in_set(char c, char *set);
+int		get_height(char **s);
 int		ft_is_space(int c);
 void	ft_error(char *s);
 char	**ft_split_set(char const *s, char *set, int *len);

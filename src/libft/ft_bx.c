@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_utils.c                                      :+:      :+:    :+:   */
+/*   ft_bx.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 17:54:07 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/13 22:37:25 by bahbibe          ###   ########.fr       */
+/*   Created: 2023/06/14 13:20:57 by bahbibe           #+#    #+#             */
+/*   Updated: 2023/06/14 13:36:19 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/cub3d.h"
+#include "libft.h"
 
-void	get_player_states(t_cub3d *cub)
+void	ft_bx(void *s, size_t n)
 {
-	if (cub->p == 'N')
-		cub->player.angel = 90;
-	if (cub->p == 'E')
-		cub->player.angel = 180;
-	if (cub->p == 'S')
-		cub->player.angel = 270;
-	if (cub->p == 'W')
-		cub->player.angel = 0;
+	if (n > 0)
+	{
+		ft_memset(s, 'x', n);
+	}
 }
-
-

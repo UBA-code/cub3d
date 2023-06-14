@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:05:26 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/13 17:56:28 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/14 11:48:14 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,12 @@ void	init_infos(t_cub3d *cub)
 
 	i = -1;
 	x = 0;
-	cub->info = ft_calloc(sizeof(t_info), 6);
-	while (++i < 6)
+	cub->info_size = 6;
+	cub->info = ft_calloc(sizeof(t_info), cub->info_size);
+	while (++i < cub->info_size)
 		parse_info(cub, cub->info, cub->full_file[i], i);
 	j = -1;
-	while (++j < 6)
+	while (++j < cub->info_size)
 	{
 		x = j;
 		while (++x < 6)
@@ -119,12 +120,11 @@ void	parse_map(t_cub3d *cub, int i)
 	while (cub->full_file[i])
 	{
 		if (ft_strlen(cub->full_file[i]) > (size_t)cub->map_width)
-			cub->map_width = ft_strlen(cub->full_file[i]);
+			cub->map_width = ft_strlen(cub->full_file[i]) - 1;
 		cub->map[++j] = ft_substr(cub->full_file[i], 0,
 			ft_strchr_index(cub->full_file[i], "\n"));
 		i++;
 	}
-	cub->map_height = i;
-	printing(cub->map);
+	cub->map_height = get_height(cub->map);
 	check_map(cub->map, cub);
 }

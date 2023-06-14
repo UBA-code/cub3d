@@ -6,25 +6,11 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 00:23:01 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/13 16:58:34 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/14 11:39:13 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-static int	in_set(char c, char *set)
-{
-	int	i;
-
-	i = 0;
-	while (set[i])
-	{
-		if (set[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 static int	ft_word(char *str, char *set)
 {
