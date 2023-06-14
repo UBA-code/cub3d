@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:51:23 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/14 18:29:40 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/14 19:09:08 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char *dup_line(char *src, int len)
 	dst = ft_calloc(sizeof(char), len);
 	while (++i < len - 1)
 		dst[i] = 'x';
-	i = 1;
+	i = 0;
 	j = -1;
 	while (src && src[++j])
 		if (in_set(src[j], "01"))
