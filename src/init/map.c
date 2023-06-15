@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:25:20 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/15 15:32:46 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/15 17:07:14 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ char	**dup_map(t_cub3d *cub)
 	dup = ft_calloc(sizeof(char *), cub->map_height + 3);
 	dup[0] = dup_line(NULL, cub->map_width + 3);
 	i = 0;
-	while (++i < cub->map_height + 2)
+	while (cub->map[++i - 1])
 		dup[i] = dup_line(cub->map[i - 1], cub->map_width + 3);
-	dup[i - 1] = dup_line(NULL, cub->map_width + 3);
+	dup[i] = dup_line(NULL, cub->map_width + 3);
 	return (dup);
 }
 
