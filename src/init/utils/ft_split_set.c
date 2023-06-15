@@ -6,11 +6,11 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 00:23:01 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/14 11:39:13 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/15 16:03:06 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../../includes/cub3d.h"
 
 static int	ft_word(char *str, char *set)
 {

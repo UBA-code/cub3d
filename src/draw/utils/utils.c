@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:38:26 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/15 15:49:39 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/15 16:01:26 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,13 @@ char	*get_info_value(t_cub3d *cub, const char *id)
 		i++;
 	}
 	return (0);
+}
+
+void	ft_swap(char *c1, char *c2)
+{
+	char	temp;
+
+	temp = *c1;
+	*c1 = *c2;
+	*c2 = temp;
 }

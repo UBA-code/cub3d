@@ -6,11 +6,11 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 22:08:45 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/15 15:29:28 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/15 16:03:12 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../../includes/cub3d.h"
 
 int	is_empty(char *s)
 {
