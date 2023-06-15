@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:51:23 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/15 13:19:26 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/15 15:32:25 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-char	**alloc_file(t_cub3d *cub, int fd)
-{
-	char	*line;
-
-	cub->lines = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		cub->lines++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-	cub->full_file = ft_calloc(sizeof(char *), cub->lines + 1);
-	cub->map = ft_calloc(sizeof(char *), (cub->lines - 5));
-	if (!cub->full_file || !cub->map)
-		return (close(fd), NULL);
-	return (close(fd), cub->full_file);
-}
 
 int	check_args(t_cub3d *cub, int ac, char *file)
 {
@@ -52,6 +32,26 @@ int	check_args(t_cub3d *cub, int ac, char *file)
 	return (1);
 }
 
+char	**alloc_file(t_cub3d *cub, int fd)
+{
+	char	*line;
+
+	cub->lines = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		cub->lines++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	free(line);
+	cub->full_file = ft_calloc(sizeof(char *), cub->lines + 1);
+	cub->map = ft_calloc(sizeof(char *), (cub->lines - 5));
+	if (!cub->full_file || !cub->map)
+		return (close(fd), NULL);
+	return (close(fd), cub->full_file);
+}
+
 void	init_cub(t_cub3d *cub, char *file)
 {
 	int		i ;
@@ -64,7 +64,7 @@ void	init_cub(t_cub3d *cub, char *file)
 	while (line)
 	{
 		if (!is_info(line))
-			break;
+			break ;
 		if (line[0] != '\n')
 			cub->full_file[i++] = ft_strdup(line);
 		free(line);
@@ -80,117 +80,25 @@ void	init_cub(t_cub3d *cub, char *file)
 	init_infos(cub);
 }
 
-int is_info(char *line)
+void	init_infos(t_cub3d *cub)
 {
-	if (!ft_strncmp(line, "EA", 2) || !ft_strncmp(line, "NO", 2)
-		|| !ft_strncmp(line, "SO", 2) || !ft_strncmp(line, "WE", 2)
-		|| !ft_strncmp(line, "F", 1) || !ft_strncmp(line, "C", 1))
-		return (1);
-	return (0);
-}
-
-char *dup_line(char *src, int len)
-{
-	char *dst;
-	int i ;
-	int j ;
-
-	i  = -1;
-	dst = ft_calloc(sizeof(char), len);
-	while (++i < len - 1)
-		dst[i] = 'x';
-	i = 0;
-	j = -1;
-	while (src && src[++j])
-	{
-		i++;
-		if (in_set(src[j], "NWES01"))
-			dst[i] = src[j];
-	}
-	return(dst);
-}
-
-char **dup_map(t_cub3d *cub)
-{
-	char **dup;
-	int i;
-
-	dup = ft_calloc(sizeof(char *) , cub->map_height + 3);
-	dup[0] = dup_line(NULL, cub->map_width + 3);
-	i = 0;
-	while (++i < cub->map_height + 2)
-		dup[i] = dup_line(cub->map[i - 1], cub->map_width + 3);
-	dup[i - 1] = dup_line(NULL, cub->map_width + 3);
-	return(dup);
-}
-
-
-int	is_closed(t_cub3d *cub)
-{
-	char **dup;
-	int y;
-	int x;
-
-	y = -1;
-	dup = dup_map(cub);
-	while (dup[++y])
-	{
-		x  = -1;
-		while (dup[y][++x])
-		{
-			if (dup[y][x] == 'x')
-			{
-				if((dup[y][x + 1] && !in_set(dup[y][x + 1], "x1"))
-					|| (dup[y + 1] && !in_set(dup[y + 1][x], "x1")))
-					return (0);
-				if((x != 0 && !in_set(dup[y][x - 1], "x1"))
-					||(y != 0 && !in_set(dup[y - 1][x], "x1")))
-					return (0);
-			}
-		}
-	}
-	tab_free(dup);
-	return (1);
-}
-
-int	check_token(t_cub3d *cub)
-{
-	int	count;
+	int	i;
+	int	j;
 	int	x;
-	int	y;
-	
-	count = -1;
-	y = -1;
-	while (cub->map[++y])
-	{	
-		x = -1;
-		while (cub->map[y][++x])
-		{
-			if (in_set(cub->map[y][x], "NWES"))
-			{
-				cub->p = cub->map[y][x];
-				count++;
-			}
-			else if(!in_set(cub->map[y][x], " NWES01\t"))
-				ft_error("Invalid token\n");
-		}
+
+	i = -1;
+	x = 0;
+	cub->info_size = 6;
+	cub->info = ft_calloc(sizeof(t_info), cub->info_size);
+	while (++i < cub->info_size)
+		parse_info(cub, cub->info, cub->full_file[i], i);
+	j = -1;
+	while (++j < cub->info_size)
+	{
+		x = j;
+		while (++x < 6)
+			if (ft_strcmp(cub->info[j].id, cub->info[x].id))
+				ft_error("Duplicate infos\n");
 	}
-	return(count);
-}
-
-
-void	check_map(t_cub3d *cub)
-{
-	if(!is_closed(cub))
-		ft_error("Invalid map\n");
-	if(check_token(cub))
-		ft_error("Invalid position\n");
-	if (cub->p == 'N')
-		cub->player.angel = 90;
-	if (cub->p == 'E')
-		cub->player.angel = 180;
-	if (cub->p == 'S')
-		cub->player.angel = 270;
-	if (cub->p == 'W')
-		cub->player.angel = 0;
+	init_map(cub, i);
 }

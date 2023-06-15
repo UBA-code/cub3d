@@ -1,43 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dup_tab.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/14 10:34:56 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/03/15 14:45:03 by ybel-hac         ###   ########.fr       */
+/*   Created: 2023/03/09 17:38:26 by ybel-hac          #+#    #+#             */
+/*   Updated: 2023/06/15 15:49:39 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
 
-int	get_tab_len(char **tab)
+int	my_abs(int x)
 {
-	int	i;
-	int	len;
-
-	len = 0;
-	i = -1;
-	while (tab[++i])
-		len++;
-	return (len);
+	if (x < 0)
+		return (-x);
+	else
+		return (x);
 }
 
-char	**dup_tab(char **map)
+char	*get_info_value(t_cub3d *cub, const char *id)
 {
-	char	**final;
-	int		i;
-	int		x;
+	int	i;
 
 	i = 0;
-	x = 0;
-	final = ft_calloc(sizeof(char *), get_tab_len(map) + 1);
-	while (map[i])
+	while (i < 6)
 	{
-		final[x] = ft_strdup(map[i]);
+		if (ft_strcmp(cub->info[i].id, id))
+			return (cub->info[i].content);
 		i++;
-		x++;
 	}
-	return (final);
+	return (0);
 }

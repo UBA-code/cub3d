@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/15 12:34:41 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/15 15:53:45 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,51 +165,32 @@ typedef struct s_cub3d
 	int			floor;
 }	t_cub3d;
 
-void	printing(char** s);
+int		is_empty(char *s);
+int		is_closed(t_cub3d *cub);
+int		check_token(t_cub3d *cub);
 int		in_set(char c, char *set);
 int		get_height(char **s);
 int		ft_is_space(int c);
 void	ft_error(char *s);
 char	**ft_split_set(char const *s, char *set, int *len);
 int		check_args(t_cub3d *cub, int ac, char *file);
-void	init_cub(t_cub3d *cub, char* file);
+void	init_cub(t_cub3d *cub, char *file);
 char	**alloc_file(t_cub3d *cub, int fd);
 char	*valide_id(char *id);
 void	init_infos(t_cub3d *cub);
 void	parse_info(t_cub3d *cub, t_info *inf, char *file, int i);
 void	init_map(t_cub3d *cub, int i);
 int		is_info(char *line);
-void		check_map(t_cub3d *cub);
-
-
-///////////////////////////////////////// 
-t_info	*get_infos(t_cub3d *cub);
-int		check_empty(char *line, char c);
-char	**get_full_file(char *file);
-int		check_end_infos(char *line);
-char	**get_map(t_cub3d *cub);
-char	*strjoin_small(char *s1, char c);
-char	**dup_tab(char **map);
-int		get_tab_len(char **tab);
+void	check_map(t_cub3d *cub);
+char	*dup_line(char *src, int len);
 void	tab_free(char **tab);
+//?  draw
 void	ft_swap(char *c1, char *c2);
-int		check_characters(t_cub3d *cub, char **map);
-void	copy_map(char **dst, char *src, int len);
-void	move_back(char *c1, char *c2, char player);
-void	check_info(t_cub3d cub);
-void	check_colors(t_cub3d *cub);
 void	free_utils(t_cub3d cub);
 void	ft_exit(t_cub3d *cub, int error);
 int		my_abs(int x);
 char	*get_info_value(t_cub3d *cub, const char *id);
-void	get_player_states(t_cub3d *cub);
-int		check_characters(t_cub3d *cub, char **map);
-int		check_surounded(char **map);
-void	get_map_sizes(t_cub3d *cub);
 int		exit_btn(t_cub3d *cub);
-
-//?  draw
-
 void	draw_2dmap(t_cub3d *cub);
 int		render_2dmap(t_cub3d *cub);
 void	my_mlx_put_pixel(t_my_mlx *data, int y, int x, int color);
@@ -223,7 +204,6 @@ int		key_released(int keycode, t_cub3d *cub);
 int		mouse_move(int x, int y, t_cub3d *cub);
 void	new_obj_img(t_my_mlx *data, int hiegth, int width);
 void	draw_walls(t_cub3d *cub, t_raycast ray);
-
 //? player
 void	init_player(t_cub3d *cub);
 void	raycast(t_cub3d *cub);
