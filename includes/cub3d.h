@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/14 11:39:50 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/15 12:34:41 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,8 +177,10 @@ char	**alloc_file(t_cub3d *cub, int fd);
 char	*valide_id(char *id);
 void	init_infos(t_cub3d *cub);
 void	parse_info(t_cub3d *cub, t_info *inf, char *file, int i);
-void	parse_map(t_cub3d *cub, int i);
+void	init_map(t_cub3d *cub, int i);
 int		is_info(char *line);
+void		check_map(t_cub3d *cub);
+
 
 ///////////////////////////////////////// 
 t_info	*get_infos(t_cub3d *cub);
@@ -187,7 +189,6 @@ char	**get_full_file(char *file);
 int		check_end_infos(char *line);
 char	**get_map(t_cub3d *cub);
 char	*strjoin_small(char *s1, char c);
-int		check_map(char **map, t_cub3d *cub);
 char	**dup_tab(char **map);
 int		get_tab_len(char **tab);
 void	tab_free(char **tab);
@@ -202,7 +203,6 @@ void	ft_exit(t_cub3d *cub, int error);
 int		my_abs(int x);
 char	*get_info_value(t_cub3d *cub, const char *id);
 void	get_player_states(t_cub3d *cub);
-int		check_map(char **map, t_cub3d *cub);
 int		check_characters(t_cub3d *cub, char **map);
 int		check_surounded(char **map);
 void	get_map_sizes(t_cub3d *cub);

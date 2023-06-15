@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:05:26 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/14 11:48:14 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/15 12:13:51 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,10 @@ void	init_infos(t_cub3d *cub)
 			if (ft_strcmp(cub->info[j].id, cub->info[x].id))
 				ft_error("Duplicate infos\n");
 	}
-	parse_map(cub, i);
+	init_map(cub, i);
 }
 
-void	parse_map(t_cub3d *cub, int i)
+void	init_map(t_cub3d *cub, int i)
 {
 	int j;
 
@@ -126,5 +126,5 @@ void	parse_map(t_cub3d *cub, int i)
 		i++;
 	}
 	cub->map_height = get_height(cub->map);
-	check_map(cub->map, cub);
+	check_map(cub);
 }

@@ -29,7 +29,7 @@ SRCS = cub3d.c \
 		./src/init/ft_split_set.c \
 
 OBJ = $(SRCS:.c=.o)
-# CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 CFLAGS += -fsanitize=address -g3
 LIBS = libft
 # MLX = -Iminilibx/
