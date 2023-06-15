@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:38:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/13 17:22:14 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/15 20:05:39 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	draw_minimap(t_cub3d *cub)
 
 	y = -1;
 	img.y_pos = 0;
-	new_obj_img(&cub->img, cub->window_height, cub->window_width);
+	new_obj_img(&cub->mini_img, cub->window_height, cub->window_width);
 	while (cub->map[++y])
 	{
 		x = -1;
@@ -53,10 +53,10 @@ void	draw_minimap(t_cub3d *cub)
 		while (cub->map[y][++x])
 		{
 			if (cub->map[y][x] == '1')
-				new_img(&cub->img, img, WALL_COLOR,
+				new_img(&cub->mini_img, img, WALL_COLOR,
 					floor(TILE_SIZE * SCALE_SIZE));
 			else
-				new_img(&cub->img, img, FLOOR_COLOR,
+				new_img(&cub->mini_img, img, FLOOR_COLOR,
 					floor(TILE_SIZE * SCALE_SIZE));
 			img.x_pos += floor(TILE_SIZE * SCALE_SIZE);
 		}
@@ -76,6 +76,7 @@ int	render_2dmap(t_cub3d *cub)
 	raycast(cub);
 	mlx_put_image_to_window(cub->mlx.mlx_ptr,
 		cub->mlx.win, cub->map_img.img, 0, 0);
-	mlx_put_image_to_window(cub->mlx.mlx_ptr, cub->mlx.win, cub->img.img, 0, 0);
+	mlx_put_image_to_window(cub->mlx.mlx_ptr,
+		cub->mlx.win, cub->mini_img.img, 0, 0);
 	return (1);
 }

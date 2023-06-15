@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 12:17:00 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/13 13:30:33 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/15 19:47:30 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	rays_calc(t_cub3d *cub, t_raycast *obj)
 	while (!check_wall(cub, (obj->x), (obj->y)))
 	{
 		if ((obj->angel) == (cub->player.angel))
-			my_mlx_put_pixel(&cub->img, floor(obj->y)
+			my_mlx_put_pixel(&cub->mini_img, floor(obj->y)
 				* SCALE_SIZE, floor(obj->x) * SCALE_SIZE, LINE_COLOR);
 		obj->y += cub->player.y_inc;
 		obj->x += cub->player.x_inc;

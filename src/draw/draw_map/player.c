@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 23:03:12 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/12 12:17:23 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/15 19:47:27 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ void	draw_player(t_cub3d *cub, float y_pos, float x_pos, int color)
 	cub->player.y = y_pos;
 	img.x_pos = cub->player.x * SCALE_SIZE;
 	img.y_pos = cub->player.y * SCALE_SIZE;
-	new_img(&cub->img, img, color, 3);
+	new_img(&cub->mini_img, img, color, 3);
 }

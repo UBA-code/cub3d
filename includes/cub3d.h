@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/15 19:13:30 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/15 19:48:08 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ typedef struct s_player
 
 typedef struct s_cub3d
 {
-	t_my_mlx	img;
+	t_my_mlx	mini_img;
 	t_my_mlx	map_img;
 	char		**full_file;
 	t_info		*info;
