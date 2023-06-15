@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:25:20 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/15 17:07:14 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/15 17:20:11 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	init_map(t_cub3d *cub, int i)
 				ft_strchr_index(cub->full_file[i], "\n"));
 		i++;
 	}
+	if (ft_strchr_index(cub->full_file[i - 1], "\n") != -1)
+		ft_error("Invalid map\n");
 	cub->map_height = get_height(cub->map);
 	check_map(cub);
 }
