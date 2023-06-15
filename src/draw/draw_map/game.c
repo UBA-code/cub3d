@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:11:40 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/15 15:39:40 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/15 19:13:44 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	draw_2dmap(t_cub3d *cub)
 
 	y_pos = 0;
 	x_pos = 0;
+	cub->player.last_x = 0;
 	cub->window_height = cub->map_height * (TILE_SIZE * SCALE_SIZE);
 	cub->window_width = cub->map_width * (TILE_SIZE * SCALE_SIZE);
 	cub->mlx.mlx_ptr = mlx_init();

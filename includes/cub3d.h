@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/15 18:34:28 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/15 19:13:30 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,22 +125,23 @@ typedef struct s_obj
 
 typedef struct s_player
 {
-	float		y;
-	float		x;
-	float		dir_x;
-	float		dir_y;
-	float		dif_x;
-	float		dif_y;
-	float		steps;
-	float		x_inc;
-	float		y_inc;
-	float		angel;
-	float		turn_speed;
-	float		walk_speed;
-	int			turn;
-	int			walk;
-	int			rotate;
-	int			direction;
+	float	y;
+	float	x;
+	float	dir_x;
+	float	dir_y;
+	float	dif_x;
+	float	dif_y;
+	float	steps;
+	float	x_inc;
+	float	y_inc;
+	float	angel;
+	float	turn_speed;
+	float	walk_speed;
+	int		turn;
+	int		walk;
+	int		rotate;
+	int		direction;
+	int		last_x;
 }	t_player;
 
 typedef struct s_cub3d

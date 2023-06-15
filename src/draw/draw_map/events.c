@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 17:57:39 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/13 17:50:41 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/15 19:15:17 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,11 @@ int	mouse_move(int x, int y, t_cub3d *cub)
 {
 	if ((y <= WINDOW_HEIGTH && y >= 0) && (x <= WINDOW_WIDTH && x >= 0))
 	{
-		if (x > WINDOW_WIDTH / 2 && x < WINDOW_WIDTH)
+		if (x > cub->player.last_x && x > WINDOW_WIDTH / 2 && x < WINDOW_WIDTH)
 			cub->player.angel += TURN_SPEED;
-		else if (x <= WINDOW_WIDTH / 2 && x > 0)
+		else if (x < cub->player.last_x &&  x <= WINDOW_WIDTH / 2 && x > 0)
 			cub->player.angel -= TURN_SPEED;
 	}
+	cub->player.last_x = x;
 	return (1);
 }
