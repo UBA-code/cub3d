@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:51:23 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/15 12:57:04 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/15 13:19:26 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ int	is_closed(t_cub3d *cub)
 
 	y = -1;
 	dup = dup_map(cub);
-	printing(dup);
 	while (dup[++y])
 	{
 		x  = -1;
@@ -141,11 +140,11 @@ int	is_closed(t_cub3d *cub)
 		{
 			if (dup[y][x] == 'x')
 			{
-				if(!in_set(dup[y][x + 1], "x1\0") 
-					||!in_set(dup[y + 1][x], "x1\0"))
-						return (0);
-				if((x != 0 && !in_set(dup[y][x - 1], "x1\0") )
-					||(y != 0 && !in_set(dup[y - 1][x], "x1\0")) )
+				if((dup[y][x + 1] && !in_set(dup[y][x + 1], "x1"))
+					|| (dup[y + 1] && !in_set(dup[y + 1][x], "x1")))
+					return (0);
+				if((x != 0 && !in_set(dup[y][x - 1], "x1"))
+					||(y != 0 && !in_set(dup[y - 1][x], "x1")))
 					return (0);
 			}
 		}
