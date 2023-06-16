@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 10:39:51 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/12 16:41:14 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:18:19 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	new_main_img(t_cub3d *cub, t_my_mlx *data, int width, int height)
 	data->width = width;
 }
 
-void	new_img(t_my_mlx *data, t_obj img, int color, int size)
+void	new_obj(t_my_mlx *data, t_obj img, int color, int size)
 {
 	int			y;
 	int			x;
@@ -40,7 +40,7 @@ void	new_img(t_my_mlx *data, t_obj img, int color, int size)
 	}
 }
 
-void	new_obj_img(t_my_mlx *data, int hiegth, int width)
+void	new_black_obj(t_my_mlx *data, int hiegth, int width)
 {
 	int			y;
 	int			x;

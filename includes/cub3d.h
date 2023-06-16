@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/15 19:48:08 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:18:13 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,14 +196,14 @@ void	draw_2dmap(t_cub3d *cub);
 int		render_2dmap(t_cub3d *cub);
 void	my_mlx_put_pixel(t_my_mlx *data, int y, int x, int color);
 void	new_main_img(t_cub3d *cub, t_my_mlx *data, int width, int height);
-void	new_img(t_my_mlx *data, t_obj img, int color, int size);
+void	new_obj(t_my_mlx *data, t_obj img, int color, int size);
 void	init_player(t_cub3d *cub);
 int		check_wall(t_cub3d *cub, float new_x, float new_y);
 void	move_player(t_cub3d *cub, float x, float y);
 int		key_pressed(int keycode, t_cub3d *cub);
 int		key_released(int keycode, t_cub3d *cub);
 int		mouse_move(int x, int y, t_cub3d *cub);
-void	new_obj_img(t_my_mlx *data, int hiegth, int width);
+void	new_black_obj(t_my_mlx *data, int hiegth, int width);
 void	draw_walls(t_cub3d *cub, t_raycast ray);
 //? player
 void	init_player(t_cub3d *cub);

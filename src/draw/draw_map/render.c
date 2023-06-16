@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:38:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/15 20:05:39 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:18:25 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	draw_minimap(t_cub3d *cub)
 
 	y = -1;
 	img.y_pos = 0;
-	new_obj_img(&cub->mini_img, cub->window_height, cub->window_width);
+	new_black_obj(&cub->mini_img, cub->window_height, cub->window_width);
 	while (cub->map[++y])
 	{
 		x = -1;
@@ -53,10 +53,10 @@ void	draw_minimap(t_cub3d *cub)
 		while (cub->map[y][++x])
 		{
 			if (cub->map[y][x] == '1')
-				new_img(&cub->mini_img, img, WALL_COLOR,
+				new_obj(&cub->mini_img, img, WALL_COLOR,
 					floor(TILE_SIZE * SCALE_SIZE));
 			else
-				new_img(&cub->mini_img, img, FLOOR_COLOR,
+				new_obj(&cub->mini_img, img, FLOOR_COLOR,
 					floor(TILE_SIZE * SCALE_SIZE));
 			img.x_pos += floor(TILE_SIZE * SCALE_SIZE);
 		}
@@ -68,7 +68,7 @@ void	draw_minimap(t_cub3d *cub)
 int	render_2dmap(t_cub3d *cub)
 {
 	mlx_clear_window(cub->mlx.mlx_ptr, cub->mlx.win);
-	new_obj_img(&cub->map_img, WINDOW_HEIGTH, WINDOW_WIDTH);
+	new_black_obj(&cub->map_img, WINDOW_HEIGTH, WINDOW_WIDTH);
 	cub->player.angel += cub->player.rotate;
 	move_player(cub, cub->player.turn, cub->player.walk);
 	draw_floor_sky(cub);

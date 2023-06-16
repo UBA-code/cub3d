@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:46:26 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/05/12 21:37:15 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:29:35 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,3 +51,8 @@ void	draw_walls(t_cub3d *cub, t_raycast ray)
 		obj.start_y++;
 	}
 }
+
+// NO : top
+// EA : right
+// SO : bottom
+// WE : left
