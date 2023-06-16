@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:46:26 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/16 18:29:35 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/16 19:04:58 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 void	colored_pixel_draw(t_cub3d *cub,
 						t_walls_draw *obj, int start_x, int offsetX)
 {
+	int	offset_y;
+
 	obj->offset_y = (obj->start_y - obj->text_start_pixel)
 		* ((float)cub->textures[obj->direction].height / obj->real_wall_len);
+	offset_y = cub->textures[obj->direction].width * obj->offset_y;
 	my_mlx_put_pixel(&cub->map_img,
 		obj->start_y, start_x, cub->textures[obj->direction].addr[
-		(cub->textures[obj->direction].width * obj->offset_y)
-		+ (int)offsetX % TILE_SIZE]);
+		offset_y + (int)offsetX % TILE_SIZE]);
 }
+
+// offset_y == the y line in the texture
 
 void	draw_walls(t_cub3d *cub, t_raycast ray)
 {
