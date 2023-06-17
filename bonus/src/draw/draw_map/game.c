@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:11:40 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/15 19:47:19 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/17 11:38:14 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void	draw_2dmap(t_cub3d *cub)
 			WINDOW_HEIGTH, "juex hh");
 	init_player(cub);
 	init_textures(cub);
-	new_main_img(cub, &cub->mini_img, cub->window_width,
-		cub->window_height);
+	new_main_img(cub, &cub->mini_img, 20 * TILE_SIZE * SCALE_SIZE,
+		20 * TILE_SIZE * SCALE_SIZE);
 	new_main_img(cub, &cub->map_img, WINDOW_WIDTH, WINDOW_HEIGTH);
 	mlx_hook(cub->mlx.win, 2, 0, key_pressed, cub);
 	mlx_hook(cub->mlx.win, 3, 0, key_released, cub);

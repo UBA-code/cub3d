@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:38:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/16 11:18:25 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/17 13:17:13 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,21 @@ void	draw_minimap(t_cub3d *cub)
 	t_obj	img;
 	int		x;
 
-	y = -1;
+	y = floor(cub->player.y / TILE_SIZE) - 10;
+	if (y < -1)
+		y = -1;
 	img.y_pos = 0;
-	new_black_obj(&cub->mini_img, cub->window_height, cub->window_width);
-	while (cub->map[++y])
+	new_main_img(cub, &cub->mini_img, 20 * TILE_SIZE * SCALE_SIZE,
+		20 * TILE_SIZE * SCALE_SIZE);
+	new_black_obj(&cub->mini_img, 20 * TILE_SIZE * SCALE_SIZE,
+		20 * TILE_SIZE * SCALE_SIZE);
+	while (cub->map[++y] && img.y_pos < 20 * TILE_SIZE * SCALE_SIZE)
 	{
-		x = -1;
+		x = floor(cub->player.x / TILE_SIZE) - 10;
+		if (x < -1)
+			x = -1;
 		img.x_pos = 0;
-		while (cub->map[y][++x])
+		while (cub->map[y][++x] && img.x_pos < 20 * TILE_SIZE * SCALE_SIZE)
 		{
 			if (cub->map[y][x] == '1')
 				new_obj(&cub->mini_img, img, WALL_COLOR,
