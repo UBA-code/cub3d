@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 21:38:41 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/17 13:17:13 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/17 18:23:01 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,23 @@ void	draw_floor_sky(t_cub3d *cub)
 	}
 }
 
+void	draw_minimap_init(int *y, t_cub3d *cub, int *y_pos)
+{
+	*y = floor(cub->player.y / TILE_SIZE) - 10;
+	if (*y < -1)
+		*y = -1;
+	*y_pos = 0;
+	new_black_obj(&cub->mini_img, 20 * TILE_SIZE * SCALE_SIZE,
+		20 * TILE_SIZE * SCALE_SIZE);
+}
+
 void	draw_minimap(t_cub3d *cub)
 {
 	int		y;
 	t_obj	img;
 	int		x;
 
-	y = floor(cub->player.y / TILE_SIZE) - 10;
-	if (y < -1)
-		y = -1;
-	img.y_pos = 0;
-	new_main_img(cub, &cub->mini_img, 20 * TILE_SIZE * SCALE_SIZE,
-		20 * TILE_SIZE * SCALE_SIZE);
-	new_black_obj(&cub->mini_img, 20 * TILE_SIZE * SCALE_SIZE,
-		20 * TILE_SIZE * SCALE_SIZE);
+	draw_minimap_init(&y, cub, &img.y_pos);
 	while (cub->map[++y] && img.y_pos < 20 * TILE_SIZE * SCALE_SIZE)
 	{
 		x = floor(cub->player.x / TILE_SIZE) - 10;
