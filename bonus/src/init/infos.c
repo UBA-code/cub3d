@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 14:05:26 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/15 15:33:12 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/17 23:23:36 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,17 @@ char	*valide_content(t_cub3d *cub, char *content, char *id)
 	return (close(fd), file);
 }
 
-void	parse_info(t_cub3d *cub, t_info *inf, char *file, int i)
+void	parse_info(t_cub3d *cub, t_info *inf, char *file)
 {
-	char	*id;
-	char	*content;
+	char		*id;
+	char		*content;
+	static int	j;
 
 	while (ft_is_space(*file))
 		file++;
 	id = ft_substr(file, 0, ft_strchr_index(file, " \t"));
 	content = ft_substr(file + ft_strlen(id), 0, ft_strlen(file));
-	inf[i].id = valide_id(id);
-	inf[i].content = valide_content(cub, content, inf[i].id);
+	inf[j].id = valide_id(id);
+	inf[j].content = valide_content(cub, content, inf[j].id);
+	j++;
 }	

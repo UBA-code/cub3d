@@ -6,11 +6,28 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:51:23 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/15 18:39:50 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/17 23:36:40 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+int	is_empty_file(int fd)
+{
+	char	*line;
+	int		i;
+
+	i = 1;
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (!is_empty(line))
+			i = 0;
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (i);
+}
 
 int	check_args(t_cub3d *cub, int ac, char *file)
 {
@@ -28,6 +45,10 @@ int	check_args(t_cub3d *cub, int ac, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (ft_error("Cannot read file\n"), close(fd), 0);
+	if (is_empty_file(fd))
+		ft_error("Empty file\n");
+	close (fd);
+	fd = open(file, O_RDONLY);
 	cub->full_file = alloc_file(cub, fd);
 	return (1);
 }
@@ -88,10 +109,15 @@ void	init_infos(t_cub3d *cub)
 
 	i = -1;
 	x = 0;
-	cub->info_size = 6;
+	cub->info_size = 0;
+	while (cub->full_file[++i])
+		if (is_info(cub->full_file[i]))
+			cub->info_size++;
 	cub->info = ft_calloc(sizeof(t_info), cub->info_size);
-	while (++i < cub->info_size)
-		parse_info(cub, cub->info, cub->full_file[i], i);
+	i = -1;
+	while (cub->full_file[++i])
+		if (is_info(cub->full_file[i]))
+			parse_info(cub, cub->info, cub->full_file[i]);
 	j = -1;
 	while (++j < cub->info_size)
 	{
@@ -100,5 +126,5 @@ void	init_infos(t_cub3d *cub)
 			if (ft_strcmp(cub->info[j].id, cub->info[x].id))
 				ft_error("Duplicate infos\n");
 	}
-	init_map(cub, i);
+	init_map(cub);
 }

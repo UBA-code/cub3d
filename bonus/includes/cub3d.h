@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:52:05 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/16 11:18:13 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/17 23:24:15 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,8 +179,8 @@ void	init_cub(t_cub3d *cub, char *file);
 char	**alloc_file(t_cub3d *cub, int fd);
 char	*valide_id(char *id);
 void	init_infos(t_cub3d *cub);
-void	parse_info(t_cub3d *cub, t_info *inf, char *file, int i);
-void	init_map(t_cub3d *cub, int i);
+void	parse_info(t_cub3d *cub, t_info *inf, char *file);
+void	init_map(t_cub3d *cub);
 int		is_info(char *line);
 void	check_map(t_cub3d *cub);
 char	*dup_line(char *src, int len);

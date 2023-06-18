@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:50:56 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/16 11:18:51 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/17 18:44:55 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	ft_exit(t_cub3d *cub, int error)
 	free(cub->info);
 	tab_free(cub->full_file);
 	tab_free(cub->map);
-	i = -1;
 	exit(error);
 }
 

@@ -1,15 +1,13 @@
-PARSING_PATH= ./src/draw/
-EXECUTION_PATH= ./src/execution/
 SRCS = cub3d.c \
-		$(PARSING_PATH)utils/utils.c \
-		$(PARSING_PATH)utils/free_utils.c \
-		$(PARSING_PATH)draw_map/game.c \
-		$(PARSING_PATH)draw_map/render.c \
-		$(PARSING_PATH)draw_map/events.c \
-		$(PARSING_PATH)draw_map/images.c \
-		$(PARSING_PATH)draw_map/raycast.c \
-		$(PARSING_PATH)draw_map/walls_draw.c \
-		$(PARSING_PATH)draw_map/player.c \
+		./src/draw/utils/utils.c \
+		./src/draw/utils/free_utils.c \
+		./src/draw/draw_map/game.c \
+		./src/draw/draw_map/render.c \
+		./src/draw/draw_map/events.c \
+		./src/draw/draw_map/images.c \
+		./src/draw/draw_map/raycast.c \
+		./src/draw/draw_map/walls_draw.c \
+		./src/draw/draw_map/player.c \
 		./src/init/utils/utils.c \
 		./src/init/utils/ft_split_set.c \
 		./src/init/infos.c \
@@ -18,6 +16,7 @@ SRCS = cub3d.c \
 
 OBJ = $(SRCS:.c=.o)
 CFLAGS = -Wall -Werror -Wextra
+# CFLAGS += -fsanitize=address -g3
 LIBS = libft
 MLX = -lmlx -framework OpenGL -framework AppKit
 NAME = cub3d_bonus

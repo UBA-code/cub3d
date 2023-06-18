@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:25:20 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/15 17:20:11 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/17 23:24:37 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ char	**dup_map(t_cub3d *cub)
 	return (dup);
 }
 
-void	init_map(t_cub3d *cub, int i)
+void	init_map(t_cub3d *cub)
 {
+	int	i;
 	int	j;
-	int	x;
 
+	i = 0;
 	j = -1;
-	x = -1;
 	cub->map_width = 0;
-	while (is_empty(cub->full_file[i]))
+	while (is_empty(cub->full_file[i]) || is_info(cub->full_file[i]))
 		i++;
 	while (cub->full_file[i])
 	{

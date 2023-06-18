@@ -6,7 +6,7 @@
 /*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:11:40 by ybel-hac          #+#    #+#             */
-/*   Updated: 2023/06/17 11:38:14 by ybel-hac         ###   ########.fr       */
+/*   Updated: 2023/06/17 18:41:12 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	init_textures(t_cub3d *cub)
 				get_info_value(cub, dir[i]),
 				&cub->textures[i].width, &cub->textures[i].height);
 		if (!cub->textures[i].img)
-			return (ft_putstr_fd("\033[0;31minvalid texture\n", 2),
+			return (ft_putstr_fd("\033[0;31mError\ninvalid texture\n", 2),
 				ft_exit(cub, 1));
 		cub->textures[i].addr = (int *)mlx_get_data_addr(cub->textures[i].img,
 				&cub->textures[i].bits_per_pixel,

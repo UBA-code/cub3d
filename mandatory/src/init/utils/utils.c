@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 22:08:45 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/15 18:36:39 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/17 22:45:34 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	is_info(char *line)
 	while (ft_is_space(*line))
 		line++;
 	if (!*line)
-		return (1);
+		return (0);
 	if (!ft_strncmp(line, "EA", 2) || !ft_strncmp(line, "NO", 2)
 		|| !ft_strncmp(line, "SO", 2) || !ft_strncmp(line, "WE", 2)
 		|| !ft_strncmp(line, "F", 1) || !ft_strncmp(line, "C", 1))
