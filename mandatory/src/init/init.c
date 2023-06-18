@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:51:23 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/17 23:36:40 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/18 14:28:57 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	check_args(t_cub3d *cub, int ac, char *file)
 	close (fd);
 	fd = open(file, O_RDONLY);
 	cub->full_file = alloc_file(cub, fd);
+	if (!cub->full_file)
+		ft_error("Invalid file\n");
 	return (1);
 }
 
@@ -67,8 +69,7 @@ char	**alloc_file(t_cub3d *cub, int fd)
 	}
 	free(line);
 	cub->full_file = ft_calloc(sizeof(char *), cub->lines + 1);
-	cub->map = ft_calloc(sizeof(char *), (cub->lines - 5));
-	if (!cub->full_file || !cub->map)
+	if (!cub->full_file)
 		return (close(fd), NULL);
 	return (close(fd), cub->full_file);
 }
@@ -86,7 +87,7 @@ void	init_cub(t_cub3d *cub, char *file)
 	{
 		if (!is_info(line))
 			break ;
-		if (line[0] != '\n')
+		if (!is_empty(line))
 			cub->full_file[i++] = ft_strdup(line);
 		free(line);
 		line = get_next_line(fd);
@@ -113,6 +114,8 @@ void	init_infos(t_cub3d *cub)
 	while (cub->full_file[++i])
 		if (is_info(cub->full_file[i]))
 			cub->info_size++;
+	if (cub->info_size != 6)
+		ft_error("Invalid file\n");
 	cub->info = ft_calloc(sizeof(t_info), cub->info_size);
 	i = -1;
 	while (cub->full_file[++i])
@@ -126,5 +129,6 @@ void	init_infos(t_cub3d *cub)
 			if (ft_strcmp(cub->info[j].id, cub->info[x].id))
 				ft_error("Duplicate infos\n");
 	}
+	
 	init_map(cub);
 }

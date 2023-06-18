@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:25:20 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/17 23:13:05 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/18 14:31:56 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,14 @@ void	init_map(t_cub3d *cub)
 	i = 0;
 	j = -1;
 	cub->map_width = 0;
-	while (is_empty(cub->full_file[i]) || is_info(cub->full_file[i]))
-		i++;
 	while (cub->full_file[i])
+		i++;
+	cub->map_height = i - cub->info_size;
+	if (!cub->map_height)
+		ft_error("Invalid map\n");
+	cub->map = ft_calloc(sizeof(char *), cub->map_height + 1);
+	i = cub->info_size - 1;
+	while (cub->full_file[++i])
 	{
 		if (ft_strlen(cub->full_file[i]) > (size_t)cub->map_width)
 			cub->map_width = ft_strlen(cub->full_file[i]) - 1;
@@ -44,11 +49,9 @@ void	init_map(t_cub3d *cub)
 			ft_error("Invalid map\n");
 		cub->map[++j] = ft_substr(cub->full_file[i], 0,
 				ft_strchr_index(cub->full_file[i], "\n"));
-		i++;
 	}
 	if (ft_strchr_index(cub->full_file[i - 1], "\n") != -1)
 		ft_error("Invalid map\n");
-	cub->map_height = get_height(cub->map);
 	check_map(cub);
 }
 

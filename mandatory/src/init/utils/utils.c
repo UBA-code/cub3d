@@ -6,7 +6,7 @@
 /*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 22:08:45 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/17 22:45:34 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/18 14:30:36 by bahbibe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,38 +37,12 @@ int	in_set(char c, char *set)
 	return (0);
 }
 
-int	get_height(char **s)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	j = 0;
-	while (s[++i])
-	{
-		if (j == -1)
-			break ;
-		j = -1;
-		while (s[i][++j])
-		{
-			if (!ft_is_space(s[i][j]))
-			{
-				j = -1 ;
-				break ;
-			}
-		}
-	}
-	while (s[i])
-		i++;
-	return (i);
-}
-
 int	is_info(char *line)
 {
 	while (ft_is_space(*line))
 		line++;
 	if (!*line)
-		return (0);
+		return (1);
 	if (!ft_strncmp(line, "EA", 2) || !ft_strncmp(line, "NO", 2)
 		|| !ft_strncmp(line, "SO", 2) || !ft_strncmp(line, "WE", 2)
 		|| !ft_strncmp(line, "F", 1) || !ft_strncmp(line, "C", 1))
