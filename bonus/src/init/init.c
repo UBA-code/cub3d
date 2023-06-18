@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bahbibe <bahbibe@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ybel-hac <ybel-hac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:51:23 by bahbibe           #+#    #+#             */
-/*   Updated: 2023/06/18 14:28:57 by bahbibe          ###   ########.fr       */
+/*   Updated: 2023/06/18 14:51:17 by ybel-hac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,8 @@ void	init_infos(t_cub3d *cub)
 {
 	int	i;
 	int	j;
-	int	x;
 
 	i = -1;
-	x = 0;
 	cub->info_size = 0;
 	while (cub->full_file[++i])
 		if (is_info(cub->full_file[i]))
@@ -124,11 +122,10 @@ void	init_infos(t_cub3d *cub)
 	j = -1;
 	while (++j < cub->info_size)
 	{
-		x = j;
-		while (++x < 6)
-			if (ft_strcmp(cub->info[j].id, cub->info[x].id))
+		i = j;
+		while (++i < 6)
+			if (ft_strcmp(cub->info[j].id, cub->info[i].id))
 				ft_error("Duplicate infos\n");
 	}
-	
 	init_map(cub);
 }
